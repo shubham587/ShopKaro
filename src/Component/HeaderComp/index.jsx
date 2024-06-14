@@ -9,7 +9,7 @@ import CartIcon from "../../assets/icons/CartIcon";
 
 const Header = () => {
   const NAV_MEMBER = {
-    women: [
+    WOMEN: [
       {
         path: "/womenCategory?category=jeans", // path to redirect
         name: "Jeans",
@@ -27,7 +27,7 @@ const Header = () => {
         name: "Kurta",
       },
     ],
-    men: [
+    MEN: [
       {
         path: "/menCategory?category=jeans", // path to redirect
         name: "Jeans",
@@ -45,7 +45,7 @@ const Header = () => {
         name: "T-Shirt",
       },
     ],
-    kids: [
+    KIDS: [
       {
         path: "/kidsCategory?category=frocks", // path to redirect
         name: "Frocks",
@@ -59,9 +59,8 @@ const Header = () => {
         name: "T-Shirt",
       },
     ],
-    beauty: [{ path: "/comingsoon", name: "Coming soon.." }],
+    BEAUTY: [{ path: "/comingsoon", name: "Coming soon.." }],
   };
-
 
   return (
     <>
@@ -84,16 +83,33 @@ const Header = () => {
           </div>
           <div className="input-search">
             <Input
-              width="200%"
-              height=""
+              width="120%"
+              height="50%"
+              padding="10px"
               type="text"
               placeholder="What are you looking for ?"
             />
           </div>
           <div className="icon more-icon">
-            <h2 className="icon" style={{fontWeight: "bold"}}>MORE |</h2>  
-            <div className="icon profile-icon">
-              <UserIcon />
+            <h3 className="icon" style={{ fontWeight: "lighter" }}>
+              MORE |
+            </h3>
+            <div
+              style={{
+                marginBottom: "10px",
+                marginTop: "-20px",
+                marginRight: "-70px",
+              }}
+              className="profile-icon icon"
+            >
+              <Dropdown
+                categoryName={<UserIcon />}
+                categoryPath=""
+                routePath={[
+                  { path: "/login", name: "Login" },
+                  { path: "/signin", name: "Sign-in" },
+                ]}
+              />
             </div>
             <div className="icon favorite-icon">
               <FavouriteIcon />
@@ -104,6 +120,9 @@ const Header = () => {
           </div>
         </div>
       </nav>
+      <div className="offer-banner">
+        <marquee direction="right">Now Live | Biggest Sale Of The Year</marquee>{" "}
+      </div>
     </>
   );
 };

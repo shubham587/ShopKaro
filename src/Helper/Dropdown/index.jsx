@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.sass";
 
-const Dropdown = ({ categoryName, categoryPath, routePath }) => {
+const Dropdown = ({ categoryName, categoryPath, routePath, ...props }) => {
   return (
-    <div className="dropdown">
+    <div style={{...props}} className="dropdown">
       <Link className="anchor" to={categoryPath}>
-        {(categoryName).toUpperCase()}
+        {categoryName}
       </Link>
       <div className="dropdown-items">
         {routePath.map((route, ind) => (

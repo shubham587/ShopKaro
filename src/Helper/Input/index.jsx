@@ -1,10 +1,10 @@
 import React from 'react'
 import "./style.sass"
 
-const Input = ({type, placeholder, value}) => {
+const Input = ({type, placeholder, ...props}) => {
   return (
     <>
-        <input type={type} placeholder={placeholder} />
+        <input style={{...props}} type={type} placeholder={placeholder} />
     </>
   )
 }
