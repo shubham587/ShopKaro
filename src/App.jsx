@@ -5,10 +5,12 @@ import "./App.sass";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import IdComp from "./Component/IdComp";
 import Counter from "./Component/Counter";
+import DefaultLayout from "./Pages/Layout/DefaultLayout";
 
 const route = createBrowserRouter([
   {
     path: "/",
+    element: <DefaultLayout />,
     children: [
       { index: true, element: <Counter /> },
       {
