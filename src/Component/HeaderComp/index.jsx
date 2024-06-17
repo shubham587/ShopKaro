@@ -6,6 +6,7 @@ import Input from "../../Helper/Input";
 import UserIcon from "../../assets/icons/UserIcon";
 import FavouriteIcon from "../../assets/icons/FavouriteIcon";
 import CartIcon from "../../assets/icons/CartIcon";
+import { NavLink, Link } from "react-router-dom";
 
 const Header = () => {
   const NAV_MEMBER = {
@@ -62,13 +63,14 @@ const Header = () => {
     beauty: [{ path: "/comingsoon", name: "Coming soon.." }],
   };
 
-
   return (
     <>
       <nav className="navbar-container">
         <div className="nav-items">
           <div className="logo">
-            <img className="img-logo" src={logo} alt="logo" />
+            <Link to="/">
+              <img className="img-logo" src={logo} alt="logo" />
+            </Link>
           </div>
           <div className="nav-member">
             {Object.keys(NAV_MEMBER).map((category, index) => (
@@ -91,15 +93,23 @@ const Header = () => {
             />
           </div>
           <div className="icon more-icon">
-            <h2 className="icon" style={{fontWeight: "bold"}}>MORE |</h2>  
+            <h2 className="icon" style={{ fontWeight: "bold" }}>
+              MORE |
+            </h2>
             <div className="icon profile-icon">
-              <UserIcon />
+              <NavLink to="/user-info">
+                <UserIcon />
+              </NavLink>
             </div>
             <div className="icon favorite-icon">
-              <FavouriteIcon />
+              <NavLink to="/favorite-cart">
+                <FavouriteIcon />
+              </NavLink>
             </div>
             <div className="icon cart-icon">
-              <CartIcon />
+              <NavLink to="/cart">
+                <CartIcon />
+              </NavLink>
             </div>
           </div>
         </div>
