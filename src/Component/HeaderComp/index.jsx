@@ -93,9 +93,9 @@ const Header = () => {
             />
           </div>
           <div className="icon more-icon">
-            <h2 className="icon" style={{ fontWeight: "bold" }}>
+            <h3 className="icon" style={{ fontWeight: "bold" }}>
               MORE |
-            </h2>
+            </h3>
             <div className="icon profile-icon">
               <NavLink to="/user-info">
                 <UserIcon />

@@ -8,6 +8,8 @@ import MailIcon from "../../assets/icons/Mail";
 import CustomerServiceIcon from "../../assets/icons/CustomerService";
 import HelpIcon from "../../assets/icons/Help";
 import { Link } from "react-router-dom";
+import Input from "../../Helper/Input";
+import Button from "../../Helper/Button";
 
 const Footer = () => {
   return (
@@ -17,8 +19,12 @@ const Footer = () => {
           <h2>Subscribe to our awesome emails.</h2>
           <p>Get our latest offers and news straight in your inbox.</p>
           <div class="sub-input">
-            <input type="text" placeholder="Please enter an email address" />
-            <button>Subscribe</button>
+            <Input type="text" placeholder="Please enter an email address" />
+            {/* <input type="text" placeholder="Please enter an email address" /> */}
+            {/* <button>Subscribe</button> */}
+            <Button type="text" className="bg-pink border-0">
+              Subscribe
+            </Button>
           </div>
         </div>
         <div class="download">
