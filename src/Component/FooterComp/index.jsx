@@ -14,7 +14,7 @@ const Footer = () => {
     <footer>
       <div class="foot-head">
         <div class="subscribe">
-          <h1>Subscribe to our awesome emails.</h1>
+          <h2>Subscribe to our awesome emails.</h2>
           <p>Get our latest offers and news straight in your inbox.</p>
           <div class="sub-input">
             <input type="text" placeholder="Please enter an email address" />
@@ -22,7 +22,7 @@ const Footer = () => {
           </div>
         </div>
         <div class="download">
-          <h1>Download our apps</h1>
+          <h2>Download our apps</h2>
           <p>Shop our products and offers on-the-go.</p>
           <div class="down-logo">
             <img
