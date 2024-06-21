@@ -77,8 +77,9 @@ const Header = () => {
           </div>
           <div className="nav-member  basis-1/6  mr-12 flex flex-row text-center gap-20" >
             {Object.keys(NAV_MEMBER).map((category, index) => (
-              <div key={index} className="member transition ease-in-out delay-150">
+              <div key={index} className="member ">
                 <Dropdown
+                  className="transition ease-in-out delay-150"
                   key={index}
                   categoryName={category}
                   categoryPath={`/${category}`}
