@@ -5,14 +5,15 @@ import "./App.sass";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import IdComp from "./Component/IdComp";
 import Counter from "./Component/Counter";
-import DefaultLayout from "./Pages/Layout/DefaultLayout";
+import DefaultLayout from "./Pages/Layout/DefaultLayout.jsx";
+import HeroSection from "./Pages/HeroSection/index.jsx";
 
 const route = createBrowserRouter([
   {
     path: "/",
     element: <DefaultLayout />,
     children: [
-      { index: true, element: <Counter /> },
+      { index: true, element: <HeroSection /> },
       {
         path: "about",
         element: <h2>this is about section</h2>,

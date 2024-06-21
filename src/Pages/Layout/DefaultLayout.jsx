@@ -8,6 +8,7 @@ const DefaultLayout = () => {
     <div>
         <Header />
         <Outlet />
+        <hr />
         <Footer />
     </div>
   )

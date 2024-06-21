@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.sass";
+// import "./style.sass";
 import InstagramIcon from "../../assets/icons/Instagram";
 import FacebookIcon from "../../assets/icons/Facebook";
 import Twitter from "../../assets/icons/Twitter";
@@ -13,31 +13,31 @@ import Button from "../../Helper/Button";
 
 const Footer = () => {
   return (
-    <footer>
-      <div class="foot-head">
-        <div class="subscribe">
-          <h2>Subscribe to our awesome emails.</h2>
-          <p>Get our latest offers and news straight in your inbox.</p>
-          <div class="sub-input">
-            <Input type="text" placeholder="Please enter an email address" />
+    <footer className="w-5/6 m-auto " >
+      <div className="  foot-head  basis-1/4 py-10 flex flex-row justify-evenly gap-60">
+        <div className="  subscribe flex flex-col gap-2">
+          <p className=" text-black font-medium  text-2xl">Subscribe to our awesome emails.</p>
+          <p className="opacity-50">Get our latest offers and news straight in your inbox.</p>
+          <div class="sub-input flex flex-row">
+            <Input className=" bg-slate-100 border-none p-4" type="text" placeholder="Please enter an email address" />
             {/* <input type="text" placeholder="Please enter an email address" /> */}
             {/* <button>Subscribe</button> */}
-            <Button type="text" className="bg-pink border-0">
+            <Button type="text" className=" bg-black text-white">
               Subscribe
             </Button>
           </div>
         </div>
-        <div class="download">
-          <h2>Download our apps</h2>
-          <p>Shop our products and offers on-the-go.</p>
-          <div class="down-logo">
+        <div class="download basis-1/4  gap-2 flex flex-col ">
+          <h2 className="text-black font-medium  text-2xl">Download our apps</h2>
+          <p className="opacity-50">Shop our products and offers on-the-go.</p>
+          <div class="down-logo flex flex-row ">
             <img
-              className="app-logo"
+              className="app-logo w-40"
               src="https://constant.myntassets.com/web/assets/img/bc5e11ad-0250-420a-ac71-115a57ca35d51539674178941-apple_store.png"
               alt=""
             />
             <img
-              className="app-logo"
+              className="app-logo w-40"
               src="https://constant.myntassets.com/web/assets/img/80cc455a-92d2-4b5c-a038-7da0d92af33f1539674178924-google_play.png"
               alt=""
             />
@@ -45,121 +45,121 @@ const Footer = () => {
         </div>
       </div>
       <hr />
-      <div class="foot-category">
-        <div class="women-cat">
-          <h3>Women</h3>
-          <p>Tops</p>
-          <p>Ethnicwear</p>
-          <p>Bottoms</p>
-          <p>Dresses & Jumpsuits</p>
-          <p>Winterwear</p>
-          <p>Lingerie</p>
-          <p>Nightwear</p>
-          <p>Sportswear</p>
-          <p>Beauty</p>
-          <p>Watches & Sunglasses</p>
+      <div class="foot-category grid grid-cols-4 p-8 ml-10">
+        <div className="women-cat flex flex-col gap-1 text-start">
+          <h3 className="text-xl" >Women</h3>
+          <p className="font-light text-xs opacity-75">Tops</p>
+          <p className="font-light opacity-75 text-sm">Ethnicwear</p>
+          <p className="font-light opacity-75 text-sm">Bottoms</p>
+          <p className="font-light opacity-75 text-sm">Dresses & Jumpsuits</p>
+          <p className="font-light opacity-75 text-sm">Winterwear</p>
+          <p className="font-light opacity-75 text-sm">Lingerie</p>
+          <p className="font-light opacity-75 text-sm">Nightwear</p>
+          <p className="font-light opacity-75 text-sm">Sportswear</p>
+          <p className="font-light opacity-75 text-sm">Beauty</p>
+          <p className="font-light opacity-75 text-sm">Watches & Sunglasses</p>
         </div>
-        <div class="men-cat">
-          <h3>Men</h3>
-          <p>Tops</p>
-          <p>Bottoms</p>
-          <p>Ethnicwear</p>
-          <p>Winterwear</p>
-          <p>Sportswear</p>
-          <p>Innerwear</p>
-          <p>Grooming</p>
-          <p>Watches</p>
-          <p>Sunglasses</p>
+        <div className="men-cat flex flex-col gap-1 text-start">
+          <h3 className="text-xl">Men</h3>
+          <p className="font-light opacity-75 text-sm">Tops</p>
+          <p className="font-light opacity-75 text-sm">Bottoms</p>
+          <p className="font-light opacity-75 text-sm">Ethnicwear</p>
+          <p className="font-light opacity-75 text-sm">Winterwear</p>
+          <p className="font-light opacity-75 text-sm">Sportswear</p>
+          <p className="font-light opacity-75 text-sm">Innerwear</p>
+          <p className="font-light opacity-75 text-sm">Grooming</p>
+          <p className="font-light opacity-75 text-sm">Watches</p>
+          <p className="font-light opacity-75 text-sm">Sunglasses</p>
         </div>
-        <div class="kids-cat">
-          <h3>Kids</h3>
-          <p>Girls Clothing</p>
-          <p>Boys Clothing</p>
-          <p>Infants Girls</p>
-          <p>Infants Boys</p>
-          <p>Winterwear</p>
-          <p>Add ons</p>
-          <p>The Teen Shop</p>
+        <div className="kids-cat flex flex-col gap-1 text-start">
+          <h3 className="text-xl">Kids</h3>
+          <p className="font-light opacity-75 text-sm">Girls Clothing</p>
+          <p className="font-light opacity-75 text-sm">Boys Clothing</p>
+          <p className="font-light opacity-75 text-sm">Infants Girls</p>
+          <p className="font-light opacity-75 text-sm">Infants Boys</p>
+          <p className="font-light opacity-75 text-sm">Winterwear</p>
+          <p className="font-light opacity-75 text-sm">Add ons</p>
+          <p className="font-light opacity-75 text-sm">The Teen Shop</p>
         </div>
-        <div class="explore">
-          <h3>Explore</h3>
-          <p>Online Offers</p>
-          <p> Offers</p>
-          <p>Online Gift Card</p>
-          <p> Gift Card</p>
-          <p>s Nearby</p>
-          <p>EDGE Membership</p>
-          <p>Shop on WhatsApp</p>
-          <p>Fashion VLOG</p>
-          <p>Join CIRCLEMAG</p>
-          <p>SBI Offers</p>
-          <p>Homecentre</p>
+        <div className="explore flex flex-col gap-1 text-start">
+          <h3 className="text-xl">Explore</h3>
+          <p className="font-light opacity-75 text-sm">Online Offers</p>
+          <p className="font-light opacity-75 text-sm"> Offers</p>
+          <p className="font-light opacity-75 text-sm">Online Gift Card</p>
+          <p className="font-light opacity-75 text-sm"> Gift Card</p>
+          <p className="font-light opacity-75 text-sm">s Nearby</p>
+          <p className="font-light opacity-75 text-sm">EDGE Membership</p>
+          <p className="font-light opacity-75 text-sm">Shop on WhatsApp</p>
+          <p className="font-light opacity-75 text-sm">Fashion VLOG</p>
+          <p className="font-light opacity-75 text-sm">Join CIRCLEMAG</p>
+          <p className="font-light opacity-75 text-sm">SBI Offers</p>
+          <p className="font-light opacity-75 text-sm">Homecentre</p>
         </div>
-        <div class="about">
-          <h3>About</h3>
-          <p>About us</p>
-          <p>Careers</p>
-          <p>Take a Tour</p>
-          <p>Blog</p>
-          <p>Store Locator</p>
-          <p>Landmark Cares</p>
+        <div className="about flex flex-col gap-1 text-start">
+          <h3 className="text-xl">About</h3>
+          <p className="font-light opacity-75 text-sm">About us</p>
+          <p className="font-light opacity-75 text-sm">Careers</p>
+          <p className="font-light opacity-75 text-sm">Take a Tour</p>
+          <p className="font-light opacity-75 text-sm">Blog</p>
+          <p className="font-light opacity-75 text-sm">Store Locator</p>
+          <p className="font-light opacity-75 text-sm">Landmark Cares</p>
         </div>
-        <div class="help">
-          <h3>Help</h3>
-          <p>Contact us</p>
-          <p>Shipping</p>
-          <p>Returns Process</p>
-          <p>Returns Policy</p>
-          <p>Help Centre</p>
+        <div className="help flex flex-col gap-1 text-start">
+          <h3 className="text-xl">Help</h3>
+          <p className="font-light opacity-75 text-sm">Contact us</p>
+          <p className="font-light opacity-75 text-sm">Shipping</p>
+          <p className="font-light opacity-75 text-sm">Returns Process</p>
+          <p className="font-light opacity-75 text-sm">Returns Policy</p>
+          <p className="font-light opacity-75 text-sm">Help Centre</p>
         </div>
       </div>
-      <hr />
-      <div class="foot-contact">
-        <div class="foot-email">
-          <div class="foot-email">
-            <div class="foot-email-logo">
-              {/* <span class="material-symbols-outlined">
+      <hr className="h-1" />
+      <div className="foot-contact flex flex-row justify-between" >
+        <div className="foot-email w-2/3 flex flex-row p-8 justify-evenly">
+          <div className="foots-email  flex flex-row gap-10">
+            <div className="foot-email-logo rounded">
+              {/* <span className="material-symbols-outlined">
                         call
                         </span> */}
               <CustomerServiceIcon />
             </div>
-            <div class="foot-email-desc">
+            <div className="foot-email-desc">
               <p>Talk to us</p>
               <h4>1800-123-1555</h4>
             </div>
           </div>
-          <div class="foot-email">
-            <div class="foot-email-logo">
-              {/* <span class="material-symbols-outlined">
+          <div className="foot-email flex flex-row gap-10">
+            <div className="foot-email-logo">
+              {/* <span className="material-symbols-outlined">
                         live_help
                         </span> */}
               <HelpIcon />
             </div>
-            <div class="foot-email-desc">
+            <div className="foot-email-desc">
               <p>Helpcenter</p>
               <h4>help.shopkaroo.com</h4>
             </div>
           </div>
-          <div class="foot-email">
-            <div class="foot-email-logo">
-              {/* <span class="material-symbols-outlined">
+          <div className="foot-email flex flex-row gap-10">
+            <div className="foot-email-logo">
+              {/* <span className="material-symbols-outlined">
                         mail
                         </span> */}
               <MailIcon />
             </div>
-            <div class="foot-email-desc">
+            <div className="foot-email-desc">
               <p>write to us</p>
               <h4>help@shopkaroo.com</h4>
             </div>
           </div>
         </div>
-        <div class="contact-logo">
+        <div className="contact-logo w-1/5 m-auto flex flex-row justify-evenly">
           <InstagramIcon />
           <FacebookIcon />
           <Twitter />
-          {/* <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-twitter"></i>
-            <i class="fa-brands fa-facebook"></i> */}
+          {/* <i className="fa-brands fa-instagram"></i>
+            <i className="fa-brands fa-twitter"></i>
+            <i className="fa-brands fa-facebook"></i> */}
         </div>
       </div>
       <hr />
@@ -170,17 +170,17 @@ const Footer = () => {
           gap: "20px",
           placeItems: "center",
         }}
-        class="foot-logo"
+        className="foot-logo"
       >
         <Link to="/">
           <img
             style={{ width: "100px" }}
-            className="foot-logo-img"
+            classNameName="foot-logo-img"
             src={logo}
             alt=""
           />
         </Link>
-        <div class="logo-desc">
+        <div className="logo-desc">
           <p>Terms & Conditions - Privacy Policy</p>
         </div>
       </div>

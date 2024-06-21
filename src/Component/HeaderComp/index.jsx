@@ -1,12 +1,15 @@
 import React from "react";
 import logo from "../../assets/logo/BuyKarooLogo.png";
-import "./style.sass";
+// import "./style.sass";
 import Dropdown from "../../Helper/Dropdown";
 import Input from "../../Helper/Input";
 import UserIcon from "../../assets/icons/UserIcon";
 import FavouriteIcon from "../../assets/icons/FavouriteIcon";
 import CartIcon from "../../assets/icons/CartIcon";
 import { NavLink, Link } from "react-router-dom";
+import SearchIcon from "../../assets/icons/Search";
+import search from "../../assets/SVG/search.svg"
+import search_icon from "../../assets/SVG/search-01-stroke-rounded.svg"
 
 const Header = () => {
   const NAV_MEMBER = {
@@ -65,16 +68,16 @@ const Header = () => {
 
   return (
     <>
-      <nav className="navbar-container">
-        <div className="nav-items">
-          <div className="logo">
+      <nav className="navbar-container h-18 mt-5" >
+        <div className="nav-items flex flex-row justify-evenly  align-middle w-90">
+          <div className="logo  basis-1/8 ">
             <Link to="/">
-              <img className="img-logo" src={logo} alt="logo" />
+              <img className="img-logo w-16" src={logo} alt="logo" />
             </Link>
           </div>
-          <div className="nav-member">
+          <div className="nav-member  basis-1/6  mr-12 flex flex-row text-center gap-20" >
             {Object.keys(NAV_MEMBER).map((category, index) => (
-              <div key={index} className="member">
+              <div key={index} className="member transition ease-in-out delay-150">
                 <Dropdown
                   key={index}
                   categoryName={category}
@@ -84,16 +87,16 @@ const Header = () => {
               </div>
             ))}
           </div>
-          <div className="input-search">
+          <div className="input-search basis-1/4 ">
             <Input
-              width="200%"
+              className="w-1/8 h-10"
               height=""
               type="text"
-              placeholder="What are you looking for ?"
+              placeholder={ `What are you looking for ?`}
             />
           </div>
-          <div className="icon more-icon">
-            <h3 className="icon" style={{ fontWeight: "bold" }}>
+          <div className="icon more-icon basis-1/5 flex flex-row justify-evenly">
+            <h3 className="icon m-1" style={{ fontWeight: "bold" }}>
               MORE |
             </h3>
             <div className="icon profile-icon">
@@ -114,6 +117,11 @@ const Header = () => {
           </div>
         </div>
       </nav>
+      <div className="marquee bg-orange-500 text-white">
+        <marquee  behavior="" direction="right">
+          Now Live | Biggest Sale Of The Year
+        </marquee>
+      </div>
     </>
   );
 };

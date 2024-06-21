@@ -10,7 +10,7 @@ const Button = (
   className = "",
   ...props}
 ) => {
-  let btnDefault = "px-4 py-2 rounded-lg focus:outline-none";
+  let btnDefault = "px-4 py-2 focus:outline-none";
   let btnClass = classNames(btnDefault, className);
 
   return (
