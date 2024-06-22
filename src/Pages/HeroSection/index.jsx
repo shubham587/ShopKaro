@@ -238,90 +238,83 @@ const POSTER = {
       path: "/",
     },
   ],
-  men: [
+  women: [
     {
       img: "https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHp-Top-Deals-Desk-Women-Banner1-29Nov22.jpg",
       name: "men-1",
-      path: "/"
+      path: "/",
     },
     {
       img: "https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHp-Top-Deals-Desk-Women-Banner2-02Dec22.jpg",
       name: "men-2",
-      path: "/"
+      path: "/",
     },
     {
       img: "https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHp-Top-Deals-Desk-Women-Banner3-29Nov22.jpg",
       name: "men-3",
-      path: "/"
+      path: "/",
     },
     {
       img: "https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHp-Top-Deals-Desk-Women-Banner4-05Dec22.jpg",
       name: "men-4",
-      path: "/"
-    }
+      path: "/",
+    },
   ],
-  women: [
+  men: [
     {
       img: "https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHp-Top-Deals-Desk-Men-Banner1-29Nov22.jpg",
       name: "women-1",
-      path: "/"
+      path: "/",
     },
     {
       img: "https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHp-Top-Deals-Desk-Men-Banner2-29Nov22.jpg",
       name: "women-2",
-      path: "/"
+      path: "/",
     },
     {
       img: "https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHp-Top-Deals-Desk-Men-Banner3-29Nov22.jpg",
       name: "women-3",
-      path: "/"
+      path: "/",
     },
     {
       img: "https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHp-Top-Deals-Desk-Men-Banner4-29Nov22.jpg",
       name: "women-4",
-      path: "/"
-    }
+      path: "/",
+    },
   ],
   kids: [
     {
       img: "https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHp-Top-Deals-Desk-Kids-Banner3-29Nov22.jpg",
       name: "kids-1",
-      path: "/"
+      path: "/",
     },
     {
       img: "https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHp-Top-Deals-Desk-Kids-Banner1-29Nov22.jpg",
       name: "kids-2",
-      path: "/"
+      path: "/",
     },
     {
       img: "https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHp-Top-Deals-Desk-Kids-Banner2-29Nov22.jpg",
       name: "kids-3",
-      path: "/"
+      path: "/",
     },
     {
       img: "https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHp-Top-Deals-Desk-Kids-Banner4-29Nov22.jpg",
       name: "kids-4",
-      path: "/"
-    }
-
-  ]
-
+      path: "/",
+    },
+  ],
 };
 
 const HeroSection = () => {
-
-  const [view, setView] = useState("men")
+  const [view, setView] = useState("men");
 
   const viewHandler = (val) => {
-    setView(val)
-  }
-  
+    setView((prev) => val);
+  };
+
   return (
     <div>
-      <button className="bg-black text-yellow-200">this is hero section</button>
-      {/* {POSTER.benefits.map((ele, ind) => (
-        <Poster posterName="Our Benefits" posterMap={ele} />
-      ))} */}
       <div className="hero-container w-4/6 m-auto">
         <div class="flat-offer mt-6">
           <img
@@ -371,11 +364,34 @@ const HeroSection = () => {
           />
         </div>
         <div className="top-deals">
-          <div className="deal-btn flex flex-row ">
-            <button>Men</button>
-            <button>Women</button>
-            <button>Kids</button>
-          </div>
+          <Poster
+            className="grid grid-cols-2 mt-6 gap-4"
+            posterName="Watches"
+            posterMap={POSTER[view]}
+          >
+            <div className="deal-btn flex flex-row gap-2 text-xl">
+              <button
+                className={
+                  view == "men"
+                    ? "rounded-full bg-black text-white w-20"
+                    : "rounded-full border-black border-2 text-black w-20"
+                }
+                onClick={() => viewHandler("men")}
+              >
+                Men
+              </button>
+              <button className={
+                  view == "women"
+                    ? "rounded-full bg-black text-white w-20"
+                    : "rounded-full border-black border-2 text-black w-20"
+                } onClick={() => viewHandler("women")}>Women</button>
+              <button className={
+                  view == "kids"
+                    ? "rounded-full bg-black text-white w-20"
+                    : "rounded-full border-black border-2 text-black w-20"
+                } onClick={() => viewHandler("kids")}>Kids</button>
+            </div>
+          </Poster>
         </div>
         <div className="bigbrand">
           <Poster

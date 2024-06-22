@@ -18,7 +18,7 @@ const Footer = () => {
         <div className="  subscribe flex flex-col gap-2">
           <p className=" text-black font-medium  text-2xl">Subscribe to our awesome emails.</p>
           <p className="opacity-50">Get our latest offers and news straight in your inbox.</p>
-          <div class="sub-input flex flex-row">
+          <div className="sub-input flex flex-row">
             <Input className=" bg-slate-100 border-none p-4" type="text" placeholder="Please enter an email address" />
             {/* <input type="text" placeholder="Please enter an email address" /> */}
             {/* <button>Subscribe</button> */}
@@ -27,10 +27,10 @@ const Footer = () => {
             </Button>
           </div>
         </div>
-        <div class="download basis-1/4  gap-2 flex flex-col ">
+        <div className="download basis-1/4  gap-2 flex flex-col ">
           <h2 className="text-black font-medium  text-2xl">Download our apps</h2>
           <p className="opacity-50">Shop our products and offers on-the-go.</p>
-          <div class="down-logo flex flex-row ">
+          <div className="down-logo flex flex-row ">
             <img
               className="app-logo w-40"
               src="https://constant.myntassets.com/web/assets/img/bc5e11ad-0250-420a-ac71-115a57ca35d51539674178941-apple_store.png"
@@ -45,7 +45,7 @@ const Footer = () => {
         </div>
       </div>
       <hr />
-      <div class="foot-category grid grid-cols-4 p-8 ml-10">
+      <div className="foot-category grid grid-cols-4 p-8 ml-10">
         <div className="women-cat flex flex-col gap-1 text-start">
           <h3 className="text-xl" >Women</h3>
           <p className="font-light text-xs opacity-75">Tops</p>

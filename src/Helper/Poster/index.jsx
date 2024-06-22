@@ -3,12 +3,13 @@ import PosterCard from "../PosterCard";
 import classNames from "classnames";
 import { createRoutesFromElements } from "react-router-dom";
 
-const Poster = ({ className, postCardClass,  posterName, posterMap }) => {
+const Poster = ({ children, className, postCardClass,  posterName, posterMap }) => {
   let posterClass = classNames(className, "posters")
   return (
     <div className="poster-section mt-6">
       {posterName ? <h1 className="text-xl">{posterName}</h1> : ""}
       {posterName? <hr className="w-16 h-4 bg-color border-orange-300" />: ""}
+      {children}
       <div className={posterClass}>
         {posterMap.map((ele, ind) => (
           <PosterCard
