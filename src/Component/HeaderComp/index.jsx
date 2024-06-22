@@ -63,7 +63,7 @@ const Header = () => {
         name: "T-Shirt",
       },
     ],
-    beauty: [{ path: "/comingsoon", name: "Coming soon.." }],
+    beauty: [{ path: "/comingsoon", name: "Coming soon..", disable: true }],
   };
 
   return (

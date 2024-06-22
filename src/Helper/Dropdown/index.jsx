@@ -16,7 +16,7 @@ const Dropdown = ({ categoryName, categoryPath, routePath, className }) => {
       </NavLink>
       <div className={dropdownClass}>
         {routePath.map((route, ind) => (
-          <NavLink className="route-item" key={ind} to={route.path}>
+          <NavLink className="route-item"  key={ind} to={route.path}>
             {/* {({ isActive }) => (
               <h2 className={isActive ? "anchors-mem text-blue-900 bg-blue-700" : "anchors"}>
                 {route.name}

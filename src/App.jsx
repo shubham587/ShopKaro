@@ -8,7 +8,8 @@ import Counter from "./Component/Counter";
 import DefaultLayout from "./Pages/Layout/DefaultLayout.jsx";
 import HeroSection from "./Pages/HeroSection/index.jsx";
 import WomenHero from "./Pages/WomenSection/index.jsx";
-
+import MenHero from "./Pages/MenSection/index.jsx";
+import KidsHero from "./Pages/KidsSection/index.jsx";
 const route = createBrowserRouter([
   {
     path: "/",
@@ -18,6 +19,14 @@ const route = createBrowserRouter([
       {
         path: "women",
         element: <WomenHero />,
+      },
+      {
+        path: "men",
+        element: <MenHero />
+      },
+      {
+        path: "kids",
+        element: <KidsHero />
       },
       {
         path: ":id",

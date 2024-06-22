@@ -175,7 +175,7 @@ const Footer = () => {
         <Link to="/">
           <img
             style={{ width: "100px" }}
-            classNameName="foot-logo-img"
+            className="foot-logo-img"
             src={logo}
             alt=""
           />
