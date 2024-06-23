@@ -316,7 +316,7 @@ const HeroSection = () => {
   return (
     <div>
       <div className="hero-container w-4/6 m-auto">
-        <div class="flat-offer mt-6">
+        <div className="flat-offer mt-6">
           <img
             src="https://lmsin.net/cdn-cgi/image/w=1232,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/Uber-HP-Desktop-PromoStrip2-08Dec2022.jpg"
             alt=""
@@ -336,7 +336,7 @@ const HeroSection = () => {
             posterMap={POSTER.unmissed}
           />
         </div>
-        <div class="hr2 mt-6">
+        <div className="hr2 mt-6">
           <img
             src="https://lmsin.net/cdn-cgi/image/w=1232,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/Uber-HP-Desktop-PromoStrip3-06Dec2022.gif"
             alt=""
