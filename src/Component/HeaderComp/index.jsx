@@ -11,7 +11,7 @@ import SearchIcon from "../../assets/icons/Search";
 import search from "../../assets/SVG/search.svg";
 import search_icon from "../../assets/SVG/search-01-stroke-rounded.svg";
 
-const Header = ({moreRef}) => {
+const Header = ({ moreRef }) => {
   const NAV_MEMBER = {
     women: [
       {
@@ -68,21 +68,21 @@ const Header = ({moreRef}) => {
 
   const moreHandler = () => {
     if (moreRef.current) {
-      moreRef.current.scrollIntoView({ behavior: 'smooth' });
+      moreRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }
-  
+  };
+
   return (
     <>
-      <div className="navbar sticky top-0 left-0 right-0 bg-white z-10 ">
+      <div className="navbar sticky top-0 left-0 right-0 bg-white z-10">
         <nav className="navbar-container h-18 mt-5">
-          <div className="nav-items flex flex-row justify-evenly  align-middle w-90">
-            <div className="logo  basis-1/8 ">
+          <div className="nav-items flex flex-row justify-evenly w-2/3 h-max  m-auto">
+            <div className="logo w-16">
               <Link to="/">
-                <img className="img-logo w-16" src={logo} alt="logo" />
+                <img className="img-logo w-max" src={logo} alt="logo" />
               </Link>
             </div>
-            <div className="nav-member  basis-1/6  mr-12 flex flex-row text-center gap-20">
+            <div className="nav-member flex flex-row text-center gap-20 w-1/3">
               {Object.keys(NAV_MEMBER).map((category, index) => (
                 <div key={index} className="member ">
                   <Dropdown
@@ -95,16 +95,20 @@ const Header = ({moreRef}) => {
                 </div>
               ))}
             </div>
-            <div className="input-search basis-1/4 ">
+            <div className="input-search  ">
               <Input
-                className="w-1/8 h-10"
+                className="w-96 h-10"
                 height=""
                 type="text"
                 placeholder={`What are you looking for ?`}
               />
             </div>
-            <div className="icon more-icon basis-1/5 flex flex-row justify-evenly">
-              <h3 className="icon m-1 cursor-pointer" style={{ fontWeight: "bold" }} onClick={moreHandler}>
+            <div className="icon more-icon  flex flex-row justify-evenly gap-8">
+              <h3
+                className="icon m-1 cursor-pointer"
+                style={{ fontWeight: "bold" }}
+                onClick={moreHandler}
+              >
                 MORE |
               </h3>
               <div className="icon profile-icon">
