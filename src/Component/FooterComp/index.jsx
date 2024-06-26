@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 // import "./style.sass";
 import InstagramIcon from "../../assets/icons/Instagram";
 import FacebookIcon from "../../assets/icons/Facebook";
@@ -10,10 +10,10 @@ import HelpIcon from "../../assets/icons/Help";
 import { Link } from "react-router-dom";
 import Input from "../../Helper/Input";
 import Button from "../../Helper/Button";
+const Footer = ({moreRef}) => {
 
-const Footer = () => {
   return (
-    <footer className="w-5/6 m-auto " >
+    <footer className="w-5/6 m-auto " ref={moreRef} >
       <div className="  foot-head  basis-1/4 py-10 flex flex-row justify-evenly gap-60">
         <div className="  subscribe flex flex-col gap-2">
           <p className=" text-black font-medium  text-2xl">Subscribe to our awesome emails.</p>

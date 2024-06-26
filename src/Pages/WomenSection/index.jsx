@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Poster from "../../Helper/Poster";
 
 const POSTER = {
@@ -367,6 +367,9 @@ const POSTER = {
 };
 
 const WomenHero = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div className="women-container w-4/6 m-auto">

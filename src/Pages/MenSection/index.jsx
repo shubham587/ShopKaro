@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Poster from "../../Helper/Poster";
 const POSTER = {
   deal: [
@@ -313,8 +313,10 @@ const POSTER = {
     },
   ],
 };
-
 const MenHero = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div className="men-container w-4/6 m-auto">

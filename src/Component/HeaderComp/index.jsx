@@ -8,10 +8,10 @@ import FavouriteIcon from "../../assets/icons/FavouriteIcon";
 import CartIcon from "../../assets/icons/CartIcon";
 import { NavLink, Link } from "react-router-dom";
 import SearchIcon from "../../assets/icons/Search";
-import search from "../../assets/SVG/search.svg"
-import search_icon from "../../assets/SVG/search-01-stroke-rounded.svg"
+import search from "../../assets/SVG/search.svg";
+import search_icon from "../../assets/SVG/search-01-stroke-rounded.svg";
 
-const Header = () => {
+const Header = ({moreRef}) => {
   const NAV_MEMBER = {
     women: [
       {
@@ -66,62 +66,70 @@ const Header = () => {
     beauty: [{ path: "/comingsoon", name: "Coming soon..", disable: true }],
   };
 
+  const moreHandler = () => {
+    if (moreRef.current) {
+      moreRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+  
   return (
     <>
-      <nav className="navbar-container h-18 mt-5" >
-        <div className="nav-items flex flex-row justify-evenly  align-middle w-90">
-          <div className="logo  basis-1/8 ">
-            <Link to="/">
-              <img className="img-logo w-16" src={logo} alt="logo" />
-            </Link>
-          </div>
-          <div className="nav-member  basis-1/6  mr-12 flex flex-row text-center gap-20" >
-            {Object.keys(NAV_MEMBER).map((category, index) => (
-              <div key={index} className="member ">
-                <Dropdown
-                  className="transition ease-in-out delay-150"
-                  key={index}
-                  categoryName={category}
-                  categoryPath={`/${category}`}
-                  routePath={NAV_MEMBER[category]}
-                />
+      <div className="navbar sticky top-0 left-0 right-0 bg-white z-10 ">
+        <nav className="navbar-container h-18 mt-5">
+          <div className="nav-items flex flex-row justify-evenly  align-middle w-90">
+            <div className="logo  basis-1/8 ">
+              <Link to="/">
+                <img className="img-logo w-16" src={logo} alt="logo" />
+              </Link>
+            </div>
+            <div className="nav-member  basis-1/6  mr-12 flex flex-row text-center gap-20">
+              {Object.keys(NAV_MEMBER).map((category, index) => (
+                <div key={index} className="member ">
+                  <Dropdown
+                    className="transition ease-in-out delay-150"
+                    key={index}
+                    categoryName={category}
+                    categoryPath={`/${category}`}
+                    routePath={NAV_MEMBER[category]}
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="input-search basis-1/4 ">
+              <Input
+                className="w-1/8 h-10"
+                height=""
+                type="text"
+                placeholder={`What are you looking for ?`}
+              />
+            </div>
+            <div className="icon more-icon basis-1/5 flex flex-row justify-evenly">
+              <h3 className="icon m-1 cursor-pointer" style={{ fontWeight: "bold" }} onClick={moreHandler}>
+                MORE |
+              </h3>
+              <div className="icon profile-icon">
+                <NavLink to="/user-info">
+                  <UserIcon />
+                </NavLink>
               </div>
-            ))}
-          </div>
-          <div className="input-search basis-1/4 ">
-            <Input
-              className="w-1/8 h-10"
-              height=""
-              type="text"
-              placeholder={ `What are you looking for ?`}
-            />
-          </div>
-          <div className="icon more-icon basis-1/5 flex flex-row justify-evenly">
-            <h3 className="icon m-1" style={{ fontWeight: "bold" }}>
-              MORE |
-            </h3>
-            <div className="icon profile-icon">
-              <NavLink to="/user-info">
-                <UserIcon />
-              </NavLink>
-            </div>
-            <div className="icon favorite-icon">
-              <NavLink to="/favorite-cart">
-                <FavouriteIcon />
-              </NavLink>
-            </div>
-            <div className="icon cart-icon">
-              <NavLink to="/cart">
-                <CartIcon />
-              </NavLink>
+              <div className="icon favorite-icon">
+                <NavLink to="/favorite-cart">
+                  <FavouriteIcon />
+                </NavLink>
+              </div>
+              <div className="icon cart-icon">
+                <NavLink to="/cart">
+                  <CartIcon />
+                </NavLink>
+              </div>
             </div>
           </div>
+        </nav>
+        <div className="marquee bg-orange-500 text-white">
+          <marquee behavior="" direction="right">
+            Now Live | Biggest Sale Of The Year
+          </marquee>
         </div>
-      </nav>
-      <div className="marquee bg-orange-500 text-white">
-        <marquee  behavior="" direction="right">
-          Now Live | Biggest Sale Of The Year
-        </marquee>
       </div>
     </>
   );
