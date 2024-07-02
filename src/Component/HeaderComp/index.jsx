@@ -15,51 +15,51 @@ const Header = ({ moreRef }) => {
   const NAV_MEMBER = {
     women: [
       {
-        path: "/womenCategory?category=jeans", // path to redirect
+        path: "women/womenCategory?category=Jeans", // path to redirect
         name: "Jeans",
       },
       {
-        path: "/womenCategory?category=saree", // path to redirect
+        path: "women/womenCategory", // path to redirect
         name: "Saree",
       },
       {
-        path: "/womenCategory?category=shirt", // path to redirect
+        path: "women/womenCategory?category=Shirt", // path to redirect
         name: "Shirt",
       },
       {
-        path: "/womenCategory?category=kurta", // path to redirect
+        path: "women/womenCategory?category=Kurta", // path to redirect
         name: "Kurta",
       },
     ],
     men: [
       {
-        path: "/menCategory?category=jeans", // path to redirect
+        path: "men/menCategory?category=Jeans", // path to redirect
         name: "Jeans",
       },
       {
-        path: "/menCategory?category=sweatshirt", // path to redirect
+        path: "men/menCategory?category=Sweatshirt", // path to redirect
         name: "Sweatshirt",
       },
       {
-        path: "/menCategory?category=shirt", // path to redirect
+        path: "men/menCategory?category=Shirts", // path to redirect
         name: "Shirt",
       },
       {
-        path: "/menCategory?category=t-shirt", // path to redirect
+        path: "men/menCategory?category=T-Shirts", // path to redirect
         name: "T-Shirt",
       },
     ],
     kids: [
       {
-        path: "/kidsCategory?category=frocks", // path to redirect
+        path: "kids/kidsCategory?category=Frocks", // path to redirect
         name: "Frocks",
       },
       {
-        path: "/kidsCategory?category=pants", // path to redirect
+        path: "kids/kidsCategory?category=Pants", // path to redirect
         name: "Pants",
       },
       {
-        path: "/kidsCategory?category=t-shirt", // path to redirect
+        path: "kids/kidsCategory?category=T-Shirt", // path to redirect
         name: "T-Shirt",
       },
     ],
