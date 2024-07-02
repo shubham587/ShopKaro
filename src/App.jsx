@@ -10,6 +10,20 @@ import HeroSection from "./Pages/HeroSection/index.jsx";
 import WomenHero from "./Pages/WomenSection/index.jsx";
 import MenHero from "./Pages/MenSection/index.jsx";
 import KidsHero from "./Pages/KidsSection/index.jsx";
+import Card from "./Helper/Card/index.jsx";
+import WomenClothingPage, {
+  loader as womenLoader,
+} from "./Pages/WomenClothing/index.jsx";
+import WomenLayout from "./Pages/Layout/WomenLayout.jsx";
+import MenLayout from "./Pages/Layout/MenLayout.jsx";
+import MenClothingPage, {
+  loader as menLoader,
+} from "./Pages/MenClothing/index.jsx";
+import KidsLayout from "./Pages/Layout/KidsLayout.jsx";
+import KidsClothingPage, {
+  loader as kidsLoader,
+} from "./Pages/KidsClothing/index";
+
 const route = createBrowserRouter([
   {
     path: "/",
@@ -18,23 +32,56 @@ const route = createBrowserRouter([
       { index: true, element: <HeroSection /> },
       {
         path: "women",
-        element: <WomenHero />,
+        element: <WomenLayout />,
+        children: [
+          {
+            index: true,
+            element: <WomenHero />,
+          },
+          {
+            path: "womenCategory",
+            element: <WomenClothingPage />,
+            loader: womenLoader,
+          },
+        ],
       },
       {
         path: "men",
-        element: <MenHero />
+        element: <MenLayout />,
+        children: [
+          {
+            index: true,
+            element: <MenHero />,
+          },
+          {
+            path: "menCategory",
+            element: <MenClothingPage />,
+            loader: menLoader,
+          },
+        ],
       },
       {
         path: "kids",
-        element: <KidsHero />
+        element: <KidsLayout />,
+        children: [
+          {
+            index: true,
+            element: <KidsHero />,
+          },
+          {
+            path: "kidsCategory",
+            element: <KidsClothingPage />,
+            loader: kidsLoader,
+          },
+        ],
       },
       {
         path: ":id",
         element: <IdComp />,
-        loader: async({request, params}) => {
+        loader: async ({ request, params }) => {
           const id = params.id;
           return id;
-        }
+        },
       },
     ],
   },

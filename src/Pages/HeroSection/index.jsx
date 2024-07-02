@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Poster from "../../Helper/Poster";
 
 const POSTER = {
@@ -308,6 +308,10 @@ const POSTER = {
 
 const HeroSection = () => {
   const [view, setView] = useState("men");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const viewHandler = (val) => {
     setView((prev) => val);
