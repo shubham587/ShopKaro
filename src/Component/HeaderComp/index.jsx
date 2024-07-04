@@ -19,7 +19,7 @@ const Header = ({ moreRef }) => {
         name: "Jeans",
       },
       {
-        path: "women/womenCategory", // path to redirect
+        path: "women/womenCategory?category=Saree", // path to redirect
         name: "Saree",
       },
       {

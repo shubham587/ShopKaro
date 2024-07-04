@@ -1,11 +1,14 @@
 import React from 'react'
 import { json, useLoaderData } from 'react-router-dom'
-
+import ProductGrid from '../../Helper/ProductGrid'
 const MenClothingPage = () => {
     let loaderData = useLoaderData() 
     console.log("loaderData", loaderData);
   return (
-    <div>MenClothingPage</div>
+    <div className="container h-5/6 border-2  m-auto">
+        <div>WomenClothingPage</div>
+        <ProductGrid data={loaderData.msg}/>
+      </div>
   )
 }
 
