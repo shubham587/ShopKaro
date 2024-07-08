@@ -18,9 +18,9 @@ export const loader = async({request, params}) => {
     let url = new URL(request.url).searchParams.get('category')
     let apiURL = ""
     if (url != null) {
-        apiURL =`http://127.0.0.1:5001/product?gender=male&category=${url}`
+        apiURL =`http://127.0.0.1:5002/product?gender=male&category=${url}`
     }else{
-        apiURL = `http://127.0.0.1:5001/product?gender=male`
+        apiURL = `http://127.0.0.1:5002/product?gender=male`
     }
     const res = await fetch(apiURL, {method: "GET"})
     const data = await res.json()
