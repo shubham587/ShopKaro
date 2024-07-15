@@ -25,7 +25,7 @@ import KidsClothingPage, {
 } from "./Pages/KidsClothing/index";
 import SiginAuth from "./Pages/SigninAuth/index.jsx";
 import AuthLayout from "./Pages/Layout/AuthLayout.jsx";
-import LoginAuth from "./Pages/LoginAuth/index.jsx";
+import LoginAuth, {action as LoginAction} from "./Pages/LoginAuth/index.jsx";
 
 const route = createBrowserRouter([
   {
@@ -94,7 +94,8 @@ const route = createBrowserRouter([
     children: [
       {
         path: "login",
-        element: <LoginAuth />
+        element: <LoginAuth />,
+        action: LoginAction
       },
       {
         path: "signin",

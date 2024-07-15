@@ -15,55 +15,55 @@ const Header = ({ moreRef }) => {
   const NAV_MEMBER = {
     women: [
       {
-        path: "women/womenCategory?category=Jeans", // path to redirect
+        path: "/women/womenCategory?category=Jeans", // path to redirect
         name: "Jeans",
       },
       {
-        path: "women/womenCategory?category=Saree", // path to redirect
+        path: "/women/womenCategory?category=Saree", // path to redirect
         name: "Saree",
       },
       {
-        path: "women/womenCategory?category=Shirt", // path to redirect
+        path: "/women/womenCategory?category=Shirt", // path to redirect
         name: "Shirt",
       },
       {
-        path: "women/womenCategory?category=Kurta", // path to redirect
+        path: "/women/womenCategory?category=Kurta", // path to redirect
         name: "Kurta",
       },
     ],
     men: [
       {
-        path: "men/menCategory?category=Jeans", // path to redirect
+        path: "/men/menCategory?category=Jeans", // path to redirect
         name: "Jeans",
       },
       {
-        path: "men/menCategory?category=Sweatshirt", // path to redirect
+        path: "/men/menCategory?category=Sweatshirt", // path to redirect
         name: "Sweatshirt",
       },
       {
-        path: "men/menCategory?category=Shirts", // path to redirect
+        path: "/men/menCategory?category=Shirts", // path to redirect
         name: "Shirt",
       },
       {
-        path: "men/menCategory?category=T-Shirts", // path to redirect
+        path: "/men/menCategory?category=T-Shirts", // path to redirect
         name: "T-Shirt",
       },
     ],
     kids: [
       {
-        path: "kids/kidsCategory?category=Frocks", // path to redirect
+        path: "/kids/kidsCategory?category=Frocks", // path to redirect
         name: "Frocks",
       },
       {
-        path: "kids/kidsCategory?category=Pants", // path to redirect
+        path: "/kids/kidsCategory?category=Pants", // path to redirect
         name: "Pants",
       },
       {
-        path: "kids/kidsCategory?category=T-Shirt", // path to redirect
+        path: "/kids/kidsCategory?category=T-Shirt", // path to redirect
         name: "T-Shirt",
       },
     ],
-    beauty: [{ path: "/comingsoon", name: "Coming soon..", disable: true }],
+    beauty: [{ path: "//comingsoon", name: "Coming soon..", disable: true }],
   };
 
   const moreHandler = () => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { json, useLoaderData, useNavigation, useParams } from "react-router-dom";
 import Card from "../../Helper/Card";
 import ProductGrid from "../../Helper/ProductGrid";
@@ -6,12 +6,9 @@ const WomenClothingPage = () => {
   const [loading, setLoading] = useState(false)
   const { state } = useNavigation()
   let loaderData = useLoaderData();
-  // if (!loaderData) {
-  //   return <HashLoader className="m-auto p-64" loading={loading} color="#f48a0d" />
-  // }
-  // if(state == ""){
-  //   setLoading(true)
-  // }
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, [])
 
   
   console.log("loaderData", loaderData);
@@ -44,9 +41,9 @@ export const loader = async ({ request, params }) => {
   let url = new URL(request.url).searchParams.get("category");
   let apiURL = "";
   if (url != null) {
-    apiURL = `http://127.0.0.1:5002/product?gender=women&category=${url}`;
+    apiURL = `http://127.0.0.1:5001/product?gender=women&category=${url}`;
   } else {
-    apiURL = `http://127.0.0.1:5002/product?gender=women`;
+    apiURL = `http://127.0.0.1:5001/product?gender=women`;
   }
   const res = await fetch(apiURL, { method: "GET" });
   const data = await res.json();
