@@ -112,7 +112,7 @@ const Header = ({ moreRef }) => {
                 MORE |
               </h3>
               <div className="icon profile-icon">
-                <NavLink to="/user-info">
+                <NavLink to="/auth/login">
                   <UserIcon />
                 </NavLink>
               </div>

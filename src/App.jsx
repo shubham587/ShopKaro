@@ -23,6 +23,9 @@ import KidsLayout from "./Pages/Layout/KidsLayout.jsx";
 import KidsClothingPage, {
   loader as kidsLoader,
 } from "./Pages/KidsClothing/index";
+import SiginAuth from "./Pages/SigninAuth/index.jsx";
+import AuthLayout from "./Pages/Layout/AuthLayout.jsx";
+import LoginAuth from "./Pages/LoginAuth/index.jsx";
 
 const route = createBrowserRouter([
   {
@@ -85,6 +88,20 @@ const route = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/auth",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "login",
+        element: <LoginAuth />
+      },
+      {
+        path: "signin",
+        element: <SiginAuth />,
+      }
+    ]
+  }
 ]);
 
 function App() {
