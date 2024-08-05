@@ -1,7 +1,8 @@
 import classNames from "classnames";
-import React, { Children, useState } from "react";
+import React, { Children, useEffect, useState } from "react";
 import { Form } from "react-router-dom";
 const UserForm = ({
+  errors,
   classname,
   fields,
   children,
@@ -14,8 +15,13 @@ const UserForm = ({
     return acc;
   }, {});
 
+  
   const [form, setForm] = useState(initialFormData);
-  const [error, setError] = useState({});
+  const [error, setError] = useState(errors);
+
+  useEffect(() => {
+    setError(errors)
+  }, [errors])
 
   const formClassName = classNames(
     "max-w-lg text-start gap-5  m-auto p-8 bg-orange-400 rounded-2xl shadow-md",
@@ -23,6 +29,7 @@ const UserForm = ({
   );
 
   const validateForm = (form) => {
+    console.log(form)
     const errors = {};
     fields.forEach((field, ind) => {
       if (field.name == "email" || field.name == "password") {
@@ -46,7 +53,7 @@ const UserForm = ({
     e.preventDefault();
     console.log(form, e);
     const error = validateForm(form);
-    if (Object.keys(error).length === 0) {
+    if (Object.keys(errors).length === 0) {
       onSubmit(form);
       setError({});
     } else {
@@ -56,7 +63,7 @@ const UserForm = ({
 
   return (
     <>
-      <Form method="post" className={formClassName}>
+      <Form method="post"  className={formClassName}>
         {formTitle ? (
           <h1 className="text-2xl text-gray-700 font-semibold text-center">
             {formTitle}

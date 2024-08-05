@@ -23,7 +23,7 @@ import KidsLayout from "./Pages/Layout/KidsLayout.jsx";
 import KidsClothingPage, {
   loader as kidsLoader,
 } from "./Pages/KidsClothing/index";
-import SiginAuth from "./Pages/SigninAuth/index.jsx";
+import SiginAuth, {action as SigninAction} from "./Pages/SigninAuth/index.jsx";
 import AuthLayout from "./Pages/Layout/AuthLayout.jsx";
 import LoginAuth, {action as LoginAction} from "./Pages/LoginAuth/index.jsx";
 
@@ -100,6 +100,7 @@ const route = createBrowserRouter([
       {
         path: "signin",
         element: <SiginAuth />,
+        action: SigninAction
       }
     ]
   }
