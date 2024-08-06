@@ -3,6 +3,7 @@ import UserForm from "../../Component/UserForm";
 import logo from "../../assets/logo/BuyKarooLogo.png";
 import Button from "../../Helper/Button";
 import { redirect, useActionData, useNavigate, json } from "react-router-dom";
+import api from "../../service/api";
 const SigninAuth = () => {
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
@@ -181,18 +182,25 @@ export const action = async ({ request }) => {
   }
   let status = ""
   const userRegister = async (formColl) => {
-    const res = await fetch(
-      "http://127.0.0.1:5001/signin",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formColl),
-      },
-    );
+    // const res = await fetch(
+    //   "http://127.0.0.1:5001/signin",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(formColl),
+    //   },
+    // );
 
-    status = await res.json()
+    // status = await res.json()
+
+
+    const res = await api.postUser(formColl)
+    if(res.ok){
+      let data = await res.json()
+      console.log(data, "login")
+    }
   };
   userRegister(formColl)
 

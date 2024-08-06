@@ -3,6 +3,7 @@ import UserForm from "../../Component/UserForm";
 import logo from "../../assets/logo/BuyKarooLogo.png";
 import Button from "../../Helper/Button";
 import { json, redirect, useNavigate, useActionData } from "react-router-dom";
+import api from "../../service/api";
 const LoginAuth = () => {
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
@@ -140,23 +141,32 @@ export const action = async ({ request }) => {
   }
 
   const getJWT = async (formColl) => {
-    const res = await fetch("http://127.0.0.1:5001/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formColl)
-    });
+    // const res = await fetch("http://127.0.0.1:5001/login", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(formColl)
+    // });
 
-    if(res.ok){
-      const data = await res.json();
-      console.log(data, "tojen")
+    // if(res.ok){
+    //   const data = await res.json();
+    //   console.log(data, "tojen")
+    // }else{
+    //   console.log(res.status, res.statusText, "error")
+    // }
+
+    const res = await api.getJWT(formColl)
+    if (res.status == 200) {
+      let data = res.data.access_token
+      console.log(data, "bearer")
+      return data
     }else{
-      console.log(res.status, res.statusText, "error")
+      return 0
     }
   };
 
-  const token = getJWT(formColl);
-
+  const token = await getJWT(formColl);
+  console.log(token, "TOKEN")
   return redirect("/");
 };
