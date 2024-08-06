@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UserForm from "../../Component/UserForm";
 import logo from "../../assets/logo/BuyKarooLogo.png";
 import Button from "../../Helper/Button";
 import { json, redirect, useNavigate, useActionData } from "react-router-dom";
 import api from "../../service/api";
+import { useDispatch } from "react-redux";
+import authSlice from "../../store/authSlice";
+import { login } from "../../store/authSlice";
 const LoginAuth = () => {
   const [formData, setFormData] = useState({});
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const actionValue = useActionData();
+  const token = actionValue?.token
+  console.log("___________token", token)
   const errors = actionValue?.errors || {};
-
   // asAS!@12
   const loginFields = [
     {
@@ -32,6 +37,13 @@ const LoginAuth = () => {
         "Password must be alphanumeric, include at least one special character, and be at least 7 characters long",
     },
   ];
+
+  useEffect(() => {
+    if (token) {
+      dispatch(login(token))
+      navigate("/")
+    }
+  }, [token])
 
   const submitHandler = (formData) => {
     console.log("formData", formData);
@@ -84,6 +96,7 @@ export const action = async ({ request }) => {
   const email = formData.get("email");
   const password = formData.get("password");
 
+
   const formColl = {
     email,
     password,
@@ -126,7 +139,6 @@ export const action = async ({ request }) => {
           errors[field.name] = field.errorMessage;
         }
       }
-      // if(field)
     });
     return errors;
   };
@@ -141,32 +153,20 @@ export const action = async ({ request }) => {
   }
 
   const getJWT = async (formColl) => {
-    // const res = await fetch("http://127.0.0.1:5001/login", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(formColl)
-    // });
-
-    // if(res.ok){
-    //   const data = await res.json();
-    //   console.log(data, "tojen")
-    // }else{
-    //   console.log(res.status, res.statusText, "error")
-    // }
-
     const res = await api.getJWT(formColl)
     if (res.status == 200) {
       let data = res.data.access_token
       console.log(data, "bearer")
       return data
-    }else{
+    } else {
       return 0
     }
   };
 
   const token = await getJWT(formColl);
-  console.log(token, "TOKEN")
-  return redirect("/");
-};
+  if (token) {
+    return json({ token }, { status: 200 });
+  } else {
+    return json({ errors: "Failed to login" }, { status: 400 });
+  }
+}
