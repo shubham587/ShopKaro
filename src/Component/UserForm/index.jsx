@@ -37,7 +37,11 @@ const UserForm = ({
           errors[field.name] = field.errorMessage;
         }
       }
-      // if(field)
+      if (field.name == "confirm-password") {
+        if (form[field.name] != form["password"]) {
+          errors[field.name] = field.errorMessage;
+        }
+      }
     });
     return errors;
   };
@@ -56,7 +60,7 @@ const UserForm = ({
 
   return (
     <>
-      <Form method="post" className={formClassName}>
+      <Form method="post" className={formClassName} onSubmit={formHandler}>
         {formTitle ? (
           <h1 className="text-2xl text-gray-700 font-semibold text-center">
             {formTitle}
@@ -68,9 +72,9 @@ const UserForm = ({
               {field.label}
             </label>
             <input
-              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline  ${
-                error[field.name] ? "border-red-500" : ""
-              }`}
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline  ${error[field.name] ? "border-red-500" : ""
+                }`}
+              required
               type={field.type}
               name={field.name}
               placeholder={field.placeholder}

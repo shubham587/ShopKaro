@@ -5,12 +5,11 @@ const Card = ({data}) => {
     <>
       <div className="card-container">
         <div className="card-image">
-          <img className='h-full ' src={data.Image} alt={data.Name} />
+          <img className='h-full' src={data.Image} alt={data.Name} />
         </div>
         <div className="card-desc">
           <h3>{data.Name}</h3>
           <p>{data.Description}</p>
-          
         </div>
       </div>
     </>

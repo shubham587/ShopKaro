@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import UserForm from "../../Component/UserForm";
 import logo from "../../assets/logo/BuyKarooLogo.png";
 import Button from "../../Helper/Button";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 const SigninAuth = () => {
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
@@ -87,5 +87,16 @@ const SigninAuth = () => {
     </>
   );
 };
-
 export default SigninAuth;
+
+export const action = async({request}) => {
+  const formData = await request.formData();
+  console.log(formData, "sigin in")
+  const email = formData.get('email');
+  const name = formData.get('name')
+  const password = formData.get('password')
+  const confirm = formData.get('confirm-password')
+  console.log(name, email, password, confirm)
+  return redirect("/")
+}
+
