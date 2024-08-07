@@ -1,16 +1,18 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+
 import "./App.sass";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import IdComp from "./Component/IdComp";
-import Counter from "./Component/Counter";
 import DefaultLayout from "./Pages/Layout/DefaultLayout.jsx";
+// const DefaultLayout = lazy(() => import("./Pages/Layout/DefaultLayout.jsx"))
 import HeroSection from "./Pages/HeroSection/index.jsx";
+// const HeroSection = lazy(() => import("./Pages/HeroSection/index.jsx"))
 import WomenHero from "./Pages/WomenSection/index.jsx";
+// const WomenHero = lazy(() => import("./Pages/WomenSection/index.jsx"))
 import MenHero from "./Pages/MenSection/index.jsx";
+// const MenHero = lazy(() => import("./Pages/MenSection/index.jsx"))
 import KidsHero from "./Pages/KidsSection/index.jsx";
 import Card from "./Helper/Card/index.jsx";
+// const KidsHero = lazy(() => import("./Pages/KidsSection/index.jsx"))
 import WomenClothingPage, {
   loader as womenLoader,
 } from "./Pages/WomenClothing/index.jsx";
@@ -23,7 +25,11 @@ import KidsLayout from "./Pages/Layout/KidsLayout.jsx";
 import KidsClothingPage, {
   loader as kidsLoader,
 } from "./Pages/KidsClothing/index";
-
+import SiginAuth, {action as SigninAction} from "./Pages/SigninAuth/index.jsx";
+import AuthLayout from "./Pages/Layout/AuthLayout.jsx";
+import LoginAuth, {action as LoginAction} from "./Pages/LoginAuth/index.jsx";
+import { useSelector } from "react-redux";
+import { lazy } from "react";
 const route = createBrowserRouter([
   {
     path: "/",
@@ -85,6 +91,22 @@ const route = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/auth",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "login",
+        element: <LoginAuth />,
+        action: LoginAction
+      },
+      {
+        path: "signin",
+        element: <SiginAuth />,
+        action: SigninAction
+      }
+    ]
+  }
 ]);
 
 function App() {

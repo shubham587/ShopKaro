@@ -1,25 +1,38 @@
-import React from 'react'
-import { json, useLoaderData } from 'react-router-dom'
+import React, { useEffect } from "react";
+import { json, useLoaderData } from "react-router-dom";
+import ProductGrid from "../../Helper/ProductGrid";
+import api from "../../service/api";
 
 const MenClothingPage = () => {
-    let loaderData = useLoaderData() 
-    console.log("loaderData", loaderData);
+  let loaderData = useLoaderData();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  console.log("loaderData", loaderData);
   return (
-    <div>MenClothingPage</div>
-  )
-}
+    <div className="container h-5/6 border-2  m-auto">
+      <div>WomenClothingPage</div>
+      <ProductGrid data={loaderData.msg} />
+    </div>
+  );
+};
 
-export default MenClothingPage
+export default MenClothingPage;
 
-export const loader = async({request, params}) => {
-    let url = new URL(request.url).searchParams.get('category')
-    let apiURL = ""
-    if (url != null) {
-        apiURL =`http://127.0.0.1:5001/product?gender=male&category=${url}`
-    }else{
-        apiURL = `http://127.0.0.1:5001/product?gender=male`
-    }
-    const res = await fetch(apiURL, {method: "GET"})
-    const data = await res.json()
-    return json(data);
-}
+export const loader = async ({ request, params }) => {
+
+  let url = new URL(request.url).searchParams.get("category");
+  let apiURL = "";
+  let apiParam = {}
+  if (url != null) {
+    // apiURL = `http://127.0.0.1:5001/product?gender=women&category=${url}`;
+    apiParam["gender"] = "male"
+    apiParam["category"] = url
+  } else {
+    // apiURL = `http://127.0.0.1:5001/product?gender=women`;
+    apiParam["gender"] = "male"
+  }
+  // const res = await fetch(apiURL, { method: "GET" });
+  const res = await api.getProduct(apiParam).then((res) => {return res.data})
+  return json(res)
+};
