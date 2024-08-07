@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import "./style.sass";
 import classNames from "classnames";
 
-const Dropdown = ({ categoryName, categoryPath, routePath, className }) => {
+const Dropdown = ({ categoryName=".", categoryPath, routePath, className }) => {
   let dropdownClass = classNames(className, "dropdown-items");
   return (
     <div className="dropdown">

@@ -12,10 +12,14 @@ const LoginAuth = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const actionValue = useActionData();
-  const token = actionValue?.token
+
+  const userErr = actionValue?.userErr || null
+  
+  const token = actionValue?.token || null
   console.log("___________token", token)
   const errors = actionValue?.errors || {};
   // asAS!@12
+  
   const loginFields = [
     {
       name: "email",
@@ -59,6 +63,7 @@ const LoginAuth = () => {
         <div className="login-section border-black border-4 flex justify-evenly align-middle items-center bg-white  h-4/5 w-4/5 rounded-lg">
           <div className="login w-1/3 ">
             <UserForm
+              userErr={userErr}
               errors={errors}
               className=""
               fields={loginFields}
@@ -154,19 +159,22 @@ export const action = async ({ request }) => {
 
   const getJWT = async (formColl) => {
     const res = await api.getJWT(formColl)
+    console.log(res, res.status)
     if (res.status == 200) {
-      let data = res.data.access_token
-      console.log(data, "bearer")
-      return data
+      let token = res.data.access_token
+      console.log(token, "bearer")
+      return json({ token }, { status: 200 });
     } else {
-      return 0
+      console.log(res)
+      let userErr = res.response.data.msg
+      return json({userErr}, {status: res.response.status})
     }
   };
 
-  const token = await getJWT(formColl);
-  if (token) {
-    return json({ token }, { status: 200 });
-  } else {
-    return json({ errors: "Failed to login" }, { status: 400 });
-  }
+  return getJWT(formColl);
+  // if (token) {
+  //   return json({ token }, { status: 200 });
+  // } else {
+  //   return json({ errors: "Failed to login" }, { status: 400 });
+  // }
 }

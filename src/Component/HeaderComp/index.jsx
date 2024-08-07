@@ -10,8 +10,15 @@ import { NavLink, Link } from "react-router-dom";
 import SearchIcon from "../../assets/icons/Search";
 import search from "../../assets/SVG/search.svg";
 import search_icon from "../../assets/SVG/search-01-stroke-rounded.svg";
-
+import { useSelector } from "react-redux";
+import authSlice from "../../store/authSlice";
+import { useDispatch } from "react-redux";
 const Header = ({ moreRef }) => {
+
+  const auth = useSelector((state) => state.auth.isAuthenticated)
+  const authName = useSelector((state) => state.auth.authName)
+  console.log(auth, "----------isAuthenticated")
+
   const NAV_MEMBER = {
     women: [
       {
@@ -66,6 +73,30 @@ const Header = ({ moreRef }) => {
     beauty: [{ path: "//comingsoon", name: "Coming soon..", disable: true }],
   };
 
+  const AUTH_MEMBER = {
+    noAuth: [
+      {
+        path: "/auth/login",
+        name: "Login"
+      },
+      {
+        path: "/auth/signin",
+        name: "Sign up"
+      }
+    ],
+    auth: [
+      
+      {
+        path: "/auth/profile",
+        name: "Profile"
+      },
+      {
+        path: "/auth/logout",
+        name: "Logout"
+      },
+    ]
+  }
+
   const moreHandler = () => {
     if (moreRef.current) {
       moreRef.current.scrollIntoView({ behavior: "smooth" });
@@ -103,7 +134,7 @@ const Header = ({ moreRef }) => {
                 placeholder={`What are you looking for ?`}
               />
             </div>
-            <div className="icon more-icon  flex flex-row justify-evenly gap-8">
+            <div className="icon more-icon w-2/5 flex flex-row justify-around">
               <h3
                 className="icon m-1 cursor-pointer"
                 style={{ fontWeight: "bold" }}
@@ -112,9 +143,12 @@ const Header = ({ moreRef }) => {
                 MORE |
               </h3>
               <div className="icon profile-icon">
-                <NavLink to="/auth/login">
-                  <UserIcon />
-                </NavLink>
+                <UserIcon />
+                <Dropdown
+                  // categoryName={auth ? "USER" : <UserIcon />}
+                  categoryPath="/auth/login"
+                  routePath={auth ? AUTH_MEMBER.auth : AUTH_MEMBER.noAuth}
+                />
               </div>
               <div className="icon favorite-icon">
                 <NavLink to="/favorite-cart">

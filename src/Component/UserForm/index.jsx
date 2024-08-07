@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React, { Children, useEffect, useState } from "react";
 import { Form } from "react-router-dom";
 const UserForm = ({
+  userErr,
   errors,
   classname,
   fields,
@@ -15,13 +16,31 @@ const UserForm = ({
     return acc;
   }, {});
 
-  
+
   const [form, setForm] = useState(initialFormData);
   const [error, setError] = useState(errors);
+  const [userError, setUserError] = useState(userErr);
+  const [userErrKey, setUserErrKey] = useState(null);
+
+  useEffect(() => {
+    if (userErr) {
+      setUserErrKey(1+Math.random(1,4)); // or use a unique identifier
+    }
+  }, [userErr]);
 
   useEffect(() => {
     setError(errors)
   }, [errors])
+
+  
+  useEffect(() => {
+    if (userErr != null) {
+      setForm((prev) => {
+        return { ...prev, email: "", password: "", "confirm-password": "" };
+      })
+      console.log("first")
+    }
+  }, [userErrKey])
 
   const formClassName = classNames(
     "max-w-lg text-start gap-5  m-auto p-8 bg-orange-400 rounded-2xl shadow-md",
@@ -48,6 +67,9 @@ const UserForm = ({
     });
     return errors;
   };
+  console.log(form)
+
+
 
   const formHandler = (e) => {
     e.preventDefault();
@@ -63,7 +85,7 @@ const UserForm = ({
 
   return (
     <>
-      <Form method="post"  className={formClassName}>
+      <Form method="post" className={formClassName}>
         {formTitle ? (
           <h1 className="text-2xl text-gray-700 font-semibold text-center">
             {formTitle}
@@ -75,9 +97,8 @@ const UserForm = ({
               {field.label}
             </label>
             <input
-              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline  ${
-                error[field.name] ? "border-red-500" : ""
-              }`}
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline  ${error[field.name] ? "border-red-500" : ""
+                }`}
               type={field.type}
               name={field.name}
               placeholder={field.placeholder}
@@ -93,6 +114,9 @@ const UserForm = ({
             )}
           </div>
         ))}
+        <div className="user-err">
+          {userErr != null ? <h3 className=" text-red-500">{userErr}</h3> : ""}
+        </div>
         <div className="btn my-4 flex flex-row justify-evenly">
           <button className="bg-white w-1/3 p-2 rounded-xl " type="submit">
             {btnTitle}

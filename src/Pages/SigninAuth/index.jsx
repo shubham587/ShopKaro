@@ -6,10 +6,20 @@ import { redirect, useActionData, useNavigate, json } from "react-router-dom";
 import api from "../../service/api";
 const SigninAuth = () => {
   const [formData, setFormData] = useState({});
+  const [userError, setUserError] = useState(null)
+
   const navigate = useNavigate();
   const actionValue = useActionData();
 
   const errors = actionValue?.errors || {};
+  let userErr = actionValue?.userErr || null
+
+  // if(userErr !== null){
+  //   setUserError(userErr)
+  // }
+
+  console.log(actionValue, "actionValue")
+  console.log(userErr, "userErr")
 
   const submitHandler = (formData) => {
     console.log("formData", formData);
@@ -64,6 +74,7 @@ const SigninAuth = () => {
         <div className="signin-section border-black border-4 flex justify-evenly align-middle items-center bg-white  h-4/5 w-4/5 rounded-lg">
           <div className="signin w-1/3 ">
             <UserForm
+              userErr={userErr}
               errors={errors}
               className=""
               fields={signinFields}
@@ -78,6 +89,7 @@ const SigninAuth = () => {
               >
                 Already User
               </Button>
+
             </UserForm>
           </div>
           <div className="logo">
@@ -178,31 +190,23 @@ export const action = async ({ request }) => {
   });
   if (Object.keys(errors).length != 0) {
     console.log(Object.keys(errors).length, "in action");
-    return json({ errors }, { status: 400 });
+    const userErr = null
+    return json({ errors, userErr }, { status: 400 });
   }
-  let status = ""
+
   const userRegister = async (formColl) => {
-    // const res = await fetch(
-    //   "http://127.0.0.1:5001/signin",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(formColl),
-    //   },
-    // );
-
-    // status = await res.json()
-
-
     const res = await api.postUser(formColl)
-    if(res.ok){
-      let data = await res.json()
+    console.log(res, res.ok)
+    if (res.status == 201) {
+      let data = await res.data.msg
       console.log(data, "login")
+      return redirect("/auth/login");
+    } else {
+      console.log(res)
+      const userErr = res.response.data.msg;
+      return json({ userErr }, { status: 400 });
     }
   };
-  userRegister(formColl)
 
-  return redirect("/auth/login");
+  return userRegister(formColl)
 };
