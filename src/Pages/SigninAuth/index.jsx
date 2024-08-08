@@ -196,12 +196,16 @@ export const action = async ({ request }) => {
 
   const userRegister = async (formColl) => {
     const res = await api.postUser(formColl)
-    console.log(res, res.ok)
+    console.log(res)
     if (res.status == 201) {
       let data = await res.data.msg
       console.log(data, "login")
       return redirect("/auth/login");
     } else {
+      if(res.message == "Network Error"){
+        let userErr = "Server is not responding plz try again later"
+        return json({userErr}, {status: 444})
+      }
       console.log(res)
       const userErr = res.response.data.msg;
       return json({ userErr }, { status: 400 });

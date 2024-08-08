@@ -11,12 +11,14 @@ import SearchIcon from "../../assets/icons/Search";
 import search from "../../assets/SVG/search.svg";
 import search_icon from "../../assets/SVG/search-01-stroke-rounded.svg";
 import { useSelector } from "react-redux";
-import authSlice from "../../store/authSlice";
+import authSlice, { logout } from "../../store/authSlice";
 import { useDispatch } from "react-redux";
+import api from "../../service/api";
 const Header = ({ moreRef }) => {
 
   const auth = useSelector((state) => state.auth.isAuthenticated)
   const authName = useSelector((state) => state.auth.authName)
+  const dispatch = useDispatch()
   console.log(auth, "----------isAuthenticated")
 
   const NAV_MEMBER = {
@@ -85,7 +87,7 @@ const Header = ({ moreRef }) => {
       }
     ],
     auth: [
-      
+
       {
         path: "/auth/profile",
         name: "Profile"
@@ -95,6 +97,27 @@ const Header = ({ moreRef }) => {
         name: "Logout"
       },
     ]
+  }
+
+  const getUserName = () => {
+
+  }
+
+  const logoutclickHandler = () => {
+    console.log("logout clicked");
+    let confirm = window.confirm("Are you sure ?")
+    if (confirm) {
+      const logoutUser = async () => {
+        const res = await api.logoutUser()
+        if (res.status === 200) {
+          console.log("logout success")
+          await dispatch(logout)
+        }else{
+          console.log("err")
+        }
+      }
+      logoutUser()
+    }
   }
 
   const moreHandler = () => {
@@ -134,7 +157,7 @@ const Header = ({ moreRef }) => {
                 placeholder={`What are you looking for ?`}
               />
             </div>
-            <div className="icon more-icon w-2/5 flex flex-row justify-around">
+            <div className={auth ? "icon more-icon w-1/4 ml-16 flex flex-row gap-8" : "icon more-icon w-1/3 ml-16 flex flex-row  content-center align-middle gap-8"}>
               <h3
                 className="icon m-1 cursor-pointer"
                 style={{ fontWeight: "bold" }}
@@ -142,11 +165,13 @@ const Header = ({ moreRef }) => {
               >
                 MORE |
               </h3>
-              <div className="icon profile-icon">
-                <UserIcon />
+              <div className={auth ? "icon profile-icon w-16" : "icon profile-icon"}>
+                {!auth && <UserIcon />}
                 <Dropdown
-                  // categoryName={auth ? "USER" : <UserIcon />}
+                  clickHandler={auth ? logoutclickHandler : ""}
+                  categoryName={auth && "USER"}
                   categoryPath="/auth/login"
+                  authClass={true}
                   routePath={auth ? AUTH_MEMBER.auth : AUTH_MEMBER.noAuth}
                 />
               </div>

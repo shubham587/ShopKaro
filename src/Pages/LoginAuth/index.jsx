@@ -44,7 +44,15 @@ const LoginAuth = () => {
 
   useEffect(() => {
     if (token) {
-      dispatch(login(token))
+      try{
+        const res = api.getUserName(formData.email)
+        console.log(res)
+      }catch(err)
+      {
+        console.log(err)
+      }
+      
+      dispatch(login({token, username : "abc@gmail.com"}))
       navigate("/")
     }
   }, [token])
@@ -165,6 +173,10 @@ export const action = async ({ request }) => {
       console.log(token, "bearer")
       return json({ token }, { status: 200 });
     } else {
+      if(res.message == "Network Error"){
+        let userErr = "Server is not responding plz try again later"
+        return json({userErr}, {status: 444})
+      }
       console.log(res)
       let userErr = res.response.data.msg
       return json({userErr}, {status: res.response.status})
@@ -172,9 +184,4 @@ export const action = async ({ request }) => {
   };
 
   return getJWT(formColl);
-  // if (token) {
-  //   return json({ token }, { status: 200 });
-  // } else {
-  //   return json({ errors: "Failed to login" }, { status: 400 });
-  // }
 }
