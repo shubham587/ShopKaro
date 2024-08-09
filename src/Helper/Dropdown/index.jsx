@@ -7,7 +7,7 @@ const Dropdown = ({ authClass  ,categoryName = "", categoryPath, routePath, clas
   const auth = useSelector((state) => state.auth.isAuthenticated)
   // let authClass = categoryPath == "/auth/login" && "mb-18" 
   let dropdownClass = classNames(className, 'dropdown-items' );
-  console.log("dropdownClass", dropdownClass)
+  // console.log("dropdownClass", dropdownClass)
   const onClickHandler = () => {
     clickHandler()
   }
@@ -17,7 +17,7 @@ const Dropdown = ({ authClass  ,categoryName = "", categoryPath, routePath, clas
       <NavLink className={authClass ? "anchor mb-10" : "anchor"} to={categoryPath}>
         {({ isActive }) => (
           <h2 className={isActive ? "anchors text-orange-400 " : "anchors"}>
-            {typeof (categoryName) == 'string' ? categoryName.toUpperCase() : categoryName}
+            {typeof (categoryName) == 'string' ? categoryName.split(" ")[0].toUpperCase() : categoryName}
           </h2>
         )}
       </NavLink>

@@ -17,7 +17,8 @@ import api from "../../service/api";
 const Header = ({ moreRef }) => {
 
   const auth = useSelector((state) => state.auth.isAuthenticated)
-  const authName = useSelector((state) => state.auth.authName)
+  const authName = useSelector((state) => state.auth.userName) || localStorage.getItem("username")
+
   const dispatch = useDispatch()
   console.log(auth, "----------isAuthenticated")
 
@@ -105,13 +106,13 @@ const Header = ({ moreRef }) => {
 
   const logoutclickHandler = () => {
     console.log("logout clicked");
-    let confirm = window.confirm("Are you sure ?")
+    let confirm = window.confirm(authName+" are you sure ?")
     if (confirm) {
       const logoutUser = async () => {
         const res = await api.logoutUser()
         if (res.status === 200) {
           console.log("logout success")
-          await dispatch(logout)
+          await dispatch(logout())
         }else{
           console.log("err")
         }
@@ -169,7 +170,7 @@ const Header = ({ moreRef }) => {
                 {!auth && <UserIcon />}
                 <Dropdown
                   clickHandler={auth ? logoutclickHandler : ""}
-                  categoryName={auth && "USER"}
+                  categoryName={auth && authName}
                   categoryPath="/auth/login"
                   authClass={true}
                   routePath={auth ? AUTH_MEMBER.auth : AUTH_MEMBER.noAuth}

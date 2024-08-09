@@ -30,6 +30,9 @@ import AuthLayout from "./Pages/Layout/AuthLayout.jsx";
 import LoginAuth, {action as LoginAction} from "./Pages/LoginAuth/index.jsx";
 import { useSelector } from "react-redux";
 import { lazy } from "react";
+import FavSection, {loader as FavLoader} from "./Pages/FavSection/index.jsx";
+import FavLayout from "./Pages/Layout/favLayout.jsx";
+import AuthErrComp from "./Component/AuthErrComp/index.jsx";
 const route = createBrowserRouter([
   {
     path: "/",
@@ -82,6 +85,17 @@ const route = createBrowserRouter([
         ],
       },
       {
+        path: "favorite-cart",
+        children: [
+          {
+            index: true,
+            element: <FavSection />,
+            errorElement: <AuthErrComp />,
+            loader: FavLoader
+          }
+        ]
+      },
+      {
         path: ":id",
         element: <IdComp />,
         loader: async ({ request, params }) => {
@@ -89,6 +103,7 @@ const route = createBrowserRouter([
           return id;
         },
       },
+      
     ],
   },
   {
