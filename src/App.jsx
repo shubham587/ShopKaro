@@ -1,6 +1,6 @@
 
 import "./App.sass";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import IdComp from "./Component/IdComp";
 import DefaultLayout from "./Pages/Layout/DefaultLayout.jsx";
 // const DefaultLayout = lazy(() => import("./Pages/Layout/DefaultLayout.jsx"))
@@ -33,6 +33,9 @@ import { lazy } from "react";
 import FavSection, {loader as FavLoader} from "./Pages/FavSection/index.jsx";
 import FavLayout from "./Pages/Layout/favLayout.jsx";
 import AuthErrComp from "./Component/AuthErrComp/index.jsx";
+import AlertIcon from "./assets/icons/Alert.jsx";
+import Button from "./Helper/Button/index.jsx";
+
 const route = createBrowserRouter([
   {
     path: "/",
@@ -90,7 +93,7 @@ const route = createBrowserRouter([
           {
             index: true,
             element: <FavSection />,
-            errorElement: <AuthErrComp />,
+            errorElement: <AuthErrComp button={true} buttonText="Login" />,
             loader: FavLoader
           }
         ]
@@ -125,9 +128,13 @@ const route = createBrowserRouter([
 ]);
 
 function App() {
+
+  const errorClickHandler = () => {
+    Navigate("/auth/login")
+  }
   return (
     <>
-      <RouterProvider router={route} />
+      <RouterProvider router={route}  />
     </>
   );
 }
