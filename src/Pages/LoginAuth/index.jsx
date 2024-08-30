@@ -15,7 +15,8 @@ const LoginAuth = () => {
   console.log("******actionValue", actionValue)
   const userErr = actionValue?.userErr || null
   const username = actionValue?.actionData?.username
-  const token = actionValue?.actionData.token || null
+  const token = actionValue?.actionData?.token || null
+  const email = actionValue?.actionData?.email || null
   console.log("___________token", token)
   const errors = actionValue?.errors || {};
   // asAS!@12
@@ -44,7 +45,7 @@ const LoginAuth = () => {
 
   useEffect(() => {
     if (token) {
-      const dispatchData = {token, username: username}
+      const dispatchData = {token, username: username, email}
       dispatch(login(dispatchData))
       navigate("/")
     }
@@ -164,7 +165,8 @@ export const action = async ({ request }) => {
     if (res.status == 200) {
       let token = res.data.access_token
       let username  = res.data.username
-      const actionData = {token, username}
+      let email = res.data.email
+      const actionData = {token, username, email}
       // console.log(token, "bearer")
       return json({ actionData }, { status: 200 });
     } else {

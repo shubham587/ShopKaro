@@ -17,14 +17,14 @@ const AuthErrComp = ({ errImg, errText, children, button, buttonText }) => {
   }
 
   return (
-    <div className="err my-44 w-max m-auto bg-amber-900 text-white">
+    <div className="err my-44 w-max m-auto bg-amber-700 text-white rounded-xl">
 
-      <div className="err-container  h-auto w-auto border border-red-500 m-auto  p-24">
-        <div className="err-section flex flex-row ">
+      <div className="err-container  h-auto w-auto  m-auto  p-24">
+        <div className="err-section flex flex-row border border-black ">
           <div className="err-img  px-16 m-auto">
             <AlertIcon width={60} height={60}/>
           </div>
-          <div className="err-text text-red-500 p-4 flex-grow flex flex-col">
+          <div className="err-text text-red-100 p-4 flex-grow flex flex-col">
             <span>
               {error.body.error}
             </span>
@@ -40,7 +40,7 @@ const AuthErrComp = ({ errImg, errText, children, button, buttonText }) => {
             </span>
           </div>
         </div>
-        <div className="button">
+        <div className="button m-4">
           {button && <Button className='bg-black text-yellow-50 float-right rounded-md' onClick={errBtnHanlder}>{buttonText}</Button>}
         </div>
       </div>

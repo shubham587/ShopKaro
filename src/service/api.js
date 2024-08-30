@@ -76,12 +76,30 @@ const getUserName = (data) =>
         return err
     })
 
+const getFavData = (data) => 
+    instance({
+        method: "GET",
+        url: "/get_fav",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+        },
+        params: data
+    }).then((res) => {
+        console.log(res.json())
+        return res
+    }).catch((err) => {
+        console.log(err)
+        return err
+    })
+
 const api = {
     getProduct,
     getJWT,
     postUser,
     logoutUser,
-    getUserName
+    getUserName,
+    getFavData
 }
 
 export default api
