@@ -12,10 +12,11 @@ const LoginAuth = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const actionValue = useActionData();
-
+  console.log("******actionValue", actionValue)
   const userErr = actionValue?.userErr || null
-  
-  const token = actionValue?.token || null
+  const username = actionValue?.actionData?.username
+  const token = actionValue?.actionData?.token || null
+  const email = actionValue?.actionData?.email || null
   console.log("___________token", token)
   const errors = actionValue?.errors || {};
   // asAS!@12
@@ -44,7 +45,8 @@ const LoginAuth = () => {
 
   useEffect(() => {
     if (token) {
-      dispatch(login(token))
+      const dispatchData = {token, username: username, email}
+      dispatch(login(dispatchData))
       navigate("/")
     }
   }, [token])
@@ -162,19 +164,21 @@ export const action = async ({ request }) => {
     console.log(res, res.status)
     if (res.status == 200) {
       let token = res.data.access_token
-      console.log(token, "bearer")
-      return json({ token }, { status: 200 });
+      let username  = res.data.username
+      let email = res.data.email
+      const actionData = {token, username, email}
+      // console.log(token, "bearer")
+      return json({ actionData }, { status: 200 });
     } else {
-      console.log(res)
+      if(res.message == "Network Error"){
+        let userErr = "Server is not responding plz try again later"
+        return json({userErr}, {status: 444})
+      }
+      // console.log(res)
       let userErr = res.response.data.msg
       return json({userErr}, {status: res.response.status})
     }
   };
 
   return getJWT(formColl);
-  // if (token) {
-  //   return json({ token }, { status: 200 });
-  // } else {
-  //   return json({ errors: "Failed to login" }, { status: 400 });
-  // }
 }

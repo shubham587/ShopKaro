@@ -48,7 +48,7 @@ const UserForm = ({
   );
 
   const validateForm = (form) => {
-    console.log(form)
+    // console.log(form)
     const errors = {};
     fields.forEach((field, ind) => {
       if (field.name == "email" || field.name == "password") {
@@ -67,7 +67,7 @@ const UserForm = ({
     });
     return errors;
   };
-  console.log(form)
+  // console.log(form)
 
 
 
