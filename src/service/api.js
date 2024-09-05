@@ -12,9 +12,9 @@ const instance = axios.create({
 const getProduct = (apiParam) =>
     instance({
         method: "GET",
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`
-        },
+        // headers: {
+        //     Authorization: `Bearer ${localStorage.getItem("token")}`
+        // },
         url: "/product",
         params: apiParam
     })
