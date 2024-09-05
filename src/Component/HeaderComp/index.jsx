@@ -106,14 +106,14 @@ const Header = ({ moreRef }) => {
 
   const logoutclickHandler = () => {
     console.log("logout clicked");
-    let confirm = window.confirm(authName+" are you sure ?")
+    let confirm = window.confirm(authName + " are you sure ?")
     if (confirm) {
       const logoutUser = async () => {
         const res = await api.logoutUser()
         if (res.status === 200) {
           console.log("logout success")
           await dispatch(logout())
-        }else{
+        } else {
           console.log("err")
         }
       }
@@ -158,7 +158,7 @@ const Header = ({ moreRef }) => {
                 placeholder={`What are you looking for ?`}
               />
             </div>
-            <div className={auth ? "icon more-icon w-1/4 ml-16 flex flex-row gap-8" : "icon more-icon w-1/3 ml-16 flex flex-row  content-center align-middle gap-8"}>
+            <div className={auth ? "icon more-icon w-1/4 ml-16 flex flex-row gap-8 " : "icon more-icon w-1/3 ml-16 flex flex-row  content-center align-middle gap-8"}>
               <h3
                 className="icon m-1 cursor-pointer"
                 style={{ fontWeight: "bold" }}
@@ -166,15 +166,18 @@ const Header = ({ moreRef }) => {
               >
                 MORE |
               </h3>
-              <div className={auth ? "icon profile-icon w-16" : "icon profile-icon"}>
+              <div className={auth ? "icon profile-icon w-16 " : "icon profile-icon relative"}>
                 {!auth && <UserIcon />}
-                <Dropdown
-                  clickHandler={auth ? logoutclickHandler : ""}
-                  categoryName={auth && authName}
-                  categoryPath="/auth/login"
-                  authClass={true}
-                  routePath={auth ? AUTH_MEMBER.auth : AUTH_MEMBER.noAuth}
-                />
+                {/* <div className="w-7 h-7 absolute top-0"> */}
+                  <Dropdown
+                    // className={"top-2 "}
+                    clickHandler={auth ? logoutclickHandler : ""}
+                    categoryName={auth && authName}
+                    categoryPath="/auth/login"
+                    authClass={true}
+                    routePath={auth ? AUTH_MEMBER.auth : AUTH_MEMBER.noAuth}
+                  />
+                {/* </div> */}
               </div>
               <div className="icon favorite-icon">
                 <NavLink to="/favorite-cart">

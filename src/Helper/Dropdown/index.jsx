@@ -13,7 +13,7 @@ const Dropdown = ({ authClass  ,categoryName = "", categoryPath, routePath, clas
   }
   
   return (
-    <div className="dropdown">
+    <div className="dropdown absolute top-0 ">
       <NavLink className={authClass ? "anchor mb-10" : "anchor"} to={categoryPath}>
         {({ isActive }) => (
           <h2 className={isActive ? "anchors text-orange-400 " : "anchors"}>
