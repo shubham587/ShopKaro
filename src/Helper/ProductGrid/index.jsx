@@ -13,7 +13,7 @@ const ProductGrid = ({data}) => {
       -3 xl:grid-cols-4 gap-8 "
     >
       {data.map((ele, ind) => (
-        <div key={ind} className="cloth-card border-2 p-4 border-orange-500 rounded-lg max-h-screen w-64 m-auto">
+        <div key={ind} className="cloth-card border-2 p-4 border-orange-200  rounded-lg max-h-screen w-64 m-auto">
           <Card data={ele} />
         </div>
       ))}
