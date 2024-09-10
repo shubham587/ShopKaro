@@ -7,12 +7,13 @@ import api from "../../service/api";
 import { useDispatch } from "react-redux";
 import authSlice from "../../store/authSlice";
 import { login } from "../../store/authSlice";
+import { toast } from "react-toastify";
 const LoginAuth = () => {
   const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const actionValue = useActionData();
-  console.log("******actionValue", actionValue)
+  // console.log("******actionValue", actionValue)
   const userErr = actionValue?.userErr || null
   const username = actionValue?.actionData?.username
   const token = actionValue?.actionData?.token || null
@@ -159,6 +160,8 @@ export const action = async ({ request }) => {
     return json({ errors }, { status: 400 });
   }
 
+  
+
   const getJWT = async (formColl) => {
     const res = await api.getJWT(formColl)
     console.log(res, res.status)
@@ -180,5 +183,11 @@ export const action = async ({ request }) => {
     }
   };
 
-  return getJWT(formColl);
+  return toast.promise(
+    getJWT(formColl), {
+      pending: "Logging in...",
+      success: "Logged in successfully",
+      error: "Logging failed.."
+    }
+  )
 }

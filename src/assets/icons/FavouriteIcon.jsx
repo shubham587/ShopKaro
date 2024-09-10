@@ -2,7 +2,7 @@
 const FavouriteIcon = ({width=30, height=30, color="#000000", fill=false}, props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    class="heart-icon"
+    className="heart-icon"
     viewBox="0 0 24 24"
     width={width}
     height={height}

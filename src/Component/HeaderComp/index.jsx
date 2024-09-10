@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import authSlice, { logout } from "../../store/authSlice";
 import { useDispatch } from "react-redux";
 import api from "../../service/api";
+import { toast } from "react-toastify";
 const Header = ({ moreRef }) => {
 
   const auth = useSelector((state) => state.auth.isAuthenticated)
@@ -100,9 +101,6 @@ const Header = ({ moreRef }) => {
     ]
   }
 
-  const getUserName = () => {
-
-  }
 
   const logoutclickHandler = () => {
     console.log("logout clicked");
@@ -117,7 +115,13 @@ const Header = ({ moreRef }) => {
           console.log("err")
         }
       }
-      logoutUser()
+      toast.promise(
+        logoutUser(), {
+          pending: "Logout processing...",
+          error: "Something went wrong!!",
+          success: "Logout successfully"
+        }
+      )
     }
   }
 
