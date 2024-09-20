@@ -31,7 +31,6 @@ const Card = ({ data, fillData }) => {
         console.log(err)
         toast.error("Somthing went wrong...")
       }
-
     } else {
       try {
         const addItemHandler = async (id) => {
