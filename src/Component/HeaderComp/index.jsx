@@ -110,16 +110,17 @@ const Header = ({ moreRef }) => {
         const res = await api.logoutUser()
         if (res.status === 200) {
           console.log("logout success")
+          toast.success("Logout successfully")
           await dispatch(logout())
         } else {
+          console.log("logout failed")
+          toast.error("Something went wrong!!")
           console.log("err")
         }
       }
       toast.promise(
         logoutUser(), {
           pending: "Logout processing...",
-          error: "Something went wrong!!",
-          success: "Logout successfully"
         }
       )
     }

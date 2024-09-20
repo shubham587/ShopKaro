@@ -2,9 +2,11 @@ import React, { useEffect } from "react";
 import { json, useLoaderData } from "react-router-dom";
 import ProductGrid from "../../Helper/ProductGrid";
 import api from "../../service/api";
-
+import { useSelector } from "react-redux";
+import { store } from "../../store";
+import userSlice from "../../store/userSlice";
 const MenClothingPage = () => {
-  let loaderData = useLoaderData();
+  const loaderData = useLoaderData();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -12,7 +14,7 @@ const MenClothingPage = () => {
   return (
     <div className="container h-5/6 border-2  m-auto">
       <div>WomenClothingPage</div>
-      <ProductGrid data={loaderData.msg} />
+      <ProductGrid data={loaderData.msg}  />
     </div>
   );
 };

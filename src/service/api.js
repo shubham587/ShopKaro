@@ -50,8 +50,7 @@ const logoutUser = () =>
         headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
         }
-    }).then((res) => 
-    {
+    }).then((res) => {
         return res
     }).catch((err) => {
         return err
@@ -76,7 +75,7 @@ const getUserName = (data) =>
         return err
     })
 
-const getFavData = (data) => 
+const getFavData = (data) =>
     instance({
         method: "GET",
         url: "/get_fav",
@@ -93,13 +92,68 @@ const getFavData = (data) =>
         return err
     })
 
+const getUserInfo = (token) =>
+    instance({
+        method: "GET",
+        url: "/user",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+        }
+    }).then((res) => {
+        // console.log("get_user", res)
+        return res
+    }).catch((err) => {
+        console.log("get_user_err", err)
+        return err
+    })
+
+const addFavItem = (id) =>
+    instance({
+        method: "POST",
+        url: "/user",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+        },
+        params: {
+            "prod_id": id
+        }
+    }).then((res) => {
+        return res
+    }).catch((err) => {
+        return `Fav item is not added ${err}`
+    })
+
+const removeFavItem = (id) =>
+    instance(
+        {
+            method: "DELETE",
+            url: "/user",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                "Content-Type": "application/json"
+            },
+            params: {
+                "prod_id": id
+            }
+        }
+    ).then((res) => {
+        return res
+    }).catch((err) => {
+        return `Fav item is not removed ${err}`
+    })
+
 const api = {
     getProduct,
+    getUserInfo,
     getJWT,
     postUser,
     logoutUser,
     getUserName,
-    getFavData
+    getFavData,
+    addFavItem,
+    removeFavItem
 }
 
 export default api

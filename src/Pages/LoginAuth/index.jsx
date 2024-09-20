@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import authSlice from "../../store/authSlice";
 import { login } from "../../store/authSlice";
 import { toast } from "react-toastify";
+import { setUser } from "../../store/userSlice"
+import { store } from "../../store";
 const LoginAuth = () => {
   const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
@@ -21,7 +23,9 @@ const LoginAuth = () => {
   console.log("___________token", token)
   const errors = actionValue?.errors || {};
   // asAS!@12
-  
+
+
+
   const loginFields = [
     {
       name: "email",
@@ -46,7 +50,7 @@ const LoginAuth = () => {
 
   useEffect(() => {
     if (token) {
-      const dispatchData = {token, username: username, email}
+      const dispatchData = { token, username: username, email }
       dispatch(login(dispatchData))
       navigate("/")
     }
@@ -160,34 +164,33 @@ export const action = async ({ request }) => {
     return json({ errors }, { status: 400 });
   }
 
-  
+
 
   const getJWT = async (formColl) => {
     const res = await api.getJWT(formColl)
     console.log(res, res.status)
     if (res.status == 200) {
       let token = res.data.access_token
-      let username  = res.data.username
+      let username = res.data.username
       let email = res.data.email
-      const actionData = {token, username, email}
-      // console.log(token, "bearer")
+      const actionData = { token, username, email }
       return json({ actionData }, { status: 200 });
     } else {
-      if(res.message == "Network Error"){
+      if (res.message == "Network Error") {
         let userErr = "Server is not responding plz try again later"
-        return json({userErr}, {status: 444})
+        return json({ userErr }, { status: 444 })
       }
       // console.log(res)
       let userErr = res.response.data.msg
-      return json({userErr}, {status: res.response.status})
+      return json({ userErr }, { status: res.response.status })
     }
   };
 
   return toast.promise(
     getJWT(formColl), {
-      pending: "Logging in...",
-      success: "Logged in successfully",
-      error: "Logging failed.."
-    }
+    pending: "Logging in...",
+    success: "Logged in successfully",
+    error: "Logging failed.."
+  }
   )
 }

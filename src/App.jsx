@@ -25,17 +25,19 @@ import KidsLayout from "./Pages/Layout/KidsLayout.jsx";
 import KidsClothingPage, {
   loader as kidsLoader,
 } from "./Pages/KidsClothing/index";
-import SiginAuth, {action as SigninAction} from "./Pages/SigninAuth/index.jsx";
+import SiginAuth, { action as SigninAction } from "./Pages/SigninAuth/index.jsx";
 import AuthLayout from "./Pages/Layout/AuthLayout.jsx";
-import LoginAuth, {action as LoginAction} from "./Pages/LoginAuth/index.jsx";
+import LoginAuth, { action as LoginAction } from "./Pages/LoginAuth/index.jsx";
 import { useSelector } from "react-redux";
-import { lazy } from "react";
-import FavSection, {loader as FavLoader} from "./Pages/FavSection/index.jsx";
+import { lazy, useEffect } from "react";
+import FavSection, { loader as FavLoader } from "./Pages/FavSection/index.jsx";
 import FavLayout from "./Pages/Layout/favLayout.jsx";
 import AuthErrComp from "./Component/AuthErrComp/index.jsx";
 import AlertIcon from "./assets/icons/Alert.jsx";
 import Button from "./Helper/Button/index.jsx";
-
+import { store } from "./store/index.jsx";
+import { setUser } from "./store/userSlice.jsx";
+import api from "./service/api.js";
 
 const route = createBrowserRouter([
   {
@@ -107,7 +109,7 @@ const route = createBrowserRouter([
           return id;
         },
       },
-      
+
     ],
   },
   {
@@ -129,13 +131,30 @@ const route = createBrowserRouter([
 ]);
 
 function App() {
+  const token = store.getState().auth.token
+  const auth  = store.getState().auth.isAuthenticated
 
+  const getUserInfo = () => {
+    try {
+      const fetchUserInfo = async () => {
+        const res = await api.getUserInfo(token)
+        // console.log("fetchUserInfo --> ", res)
+          console.log(res.data["fav-cart"], "user info")
+        store.dispatch(setUser(res.data))
+      }
+      fetchUserInfo()
+    }
+    catch (err) {
+      console.log("fetchUserErr -->", err)
+    }
+  }
+  auth && getUserInfo()
   const errorClickHandler = () => {
     Navigate("/auth/login")
   }
   return (
     <>
-      <RouterProvider router={route}  />
+      <RouterProvider router={route} />
     </>
   );
 }
