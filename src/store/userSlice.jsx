@@ -11,15 +11,17 @@ const userSlice = createSlice({
     name: "user",
     reducers: {
         addItem(state, action) {
-
             console.log(state, "state from add item")
             console.log(action, "action from add item")
-
-            state["fav-cart"].push(action.payload);
+            if(!state["fav-cart"].includes({"prod_id": action.payload})){
+                state["fav-cart"].push({"prod_id": action.payload});
+            }
         },
         removeItem(state, action){
-            state["fav-cart"].filter((ele) => ele != action.payload)
-            console.log("addItemStore", state["fav-cart"])
+            const cart = state["fav-cart"]
+            cart.filter((ele) => ele["prod_id"] != action.payload)
+            state["fav-cart"] = cart
+            console.log("addItemStore", cart,  action.payload)
         },
         setUser(state, action){
             console.log(action, "in setuser")
@@ -27,7 +29,11 @@ const userSlice = createSlice({
             state.email = action.payload.email;
             state["fav-cart"] = action.payload["fav-cart"]
         }
-    }
+    },
+    // extraReducers: {
+    //     // add cases for any other actions that might be dispatched
+        
+    // }
 })
 
 export const { addItem, removeItem, setUser} = userSlice.actions
