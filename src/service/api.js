@@ -144,6 +144,19 @@ const removeFavItem = (id) =>
         return `Fav item is not removed ${err}`
     })
 
+const getFavProduct = () => instance({
+    url: "/get_fav_list",
+    headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json"
+    },
+}).then((res) => {
+    console.log("fav_prod", res.data)
+    return res.data
+}).catch((err) => {
+    return err
+})
+
 const api = {
     getProduct,
     getUserInfo,
@@ -153,7 +166,8 @@ const api = {
     getUserName,
     getFavData,
     addFavItem,
-    removeFavItem
+    removeFavItem,
+    getFavProduct
 }
 
 export default api

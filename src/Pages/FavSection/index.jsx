@@ -1,25 +1,40 @@
-import React from 'react'
-import { json } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { json, useLoaderData } from 'react-router-dom'
 import api from '../../service/api'
 import { store } from '../../store/index.jsx'
-
+import { useSelector } from 'react-redux'
+import ProductGrid from '../../Helper/ProductGrid/index.jsx'
 
 const FavSection = () => {
-  
-  // const errbody = {
-  //   "error": "Authentication Error",
-  //   "message": ["You are not authenticated to view this page", "Please log in"],
-  //   "status": 401
-  // }
+  const loaderData = useLoaderData()
+  const [favProd, setFavProd] = useState(loaderData || [])
+  const auth = useSelector(state => state.auth.isAuthenticated)
+  const favList = useSelector((state) => state.user["fav-cart"])
 
-  // let err = new Error(errbody.error)
-  // err.body = errbody
-  // throw err
+  useEffect(() => {
+    if (auth) {
+      const getFavProduct = () => {
+        setFavProd(favList)
+        console.log("favProd-eff", favProd)
+      }
+      getFavProduct()
+    }
+  }, [favList, auth])
+  console.log("loaderData", loaderData)
 
-
+  if (!auth) {
+    return (
+      <div>Please log in...</div>
+    )
+  }
 
   return (
-    <div>fav</div>
+    <>
+      <div className="container h-5/6 border-2  m-auto">
+        <div>fav page</div>
+        <ProductGrid data={favProd} />
+      </div>
+    </>
   )
 
 }
@@ -27,10 +42,13 @@ const FavSection = () => {
 export default FavSection
 
 export const loader = async ({ params }) => {
-    const state = store.getState()
-    console.log(state)
-    const fetchFavData = async () => {
-      const res = await api.getFavData({email: state.auth.email, username: state.auth.userName})
-    }
-    return null
+
+  const auth = store.getState().auth.isAuthenticated
+  const getFavProduct = async () => {
+    const res = await api.getFavProduct()
+    console.log("FavSection", res)
+    return res
+  }
+  return getFavProduct()
+  // return  null
 }

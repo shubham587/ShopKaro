@@ -129,26 +129,31 @@ const route = createBrowserRouter([
     ]
   }
 ]);
-
 function App() {
-  const token = store.getState().auth.token
-  const auth  = store.getState().auth.isAuthenticated
+  const token = useSelector((state) => state.auth.token)
+  const auth = useSelector((state) => state.auth.isAuthenticated)
+  // const token = store.getState().auth.token
+  // const auth  = store.getState().auth.isAuthenticated
 
-  const getUserInfo = () => {
-    try {
-      const fetchUserInfo = async () => {
-        const res = await api.getUserInfo(token)
-        // console.log("fetchUserInfo --> ", res)
+  useEffect(() => {
+    const getUserInfo = () => {
+      try {
+        const fetchUserInfo = async () => {
+          const res = await api.getUserInfo(token)
+          // console.log("fetchUserInfo --> ", res)
           console.log(res.data["fav-cart"], "user info")
-        store.dispatch(setUser(res.data))
+          store.dispatch(setUser(res.data))
+        }
+        fetchUserInfo()
       }
-      fetchUserInfo()
+      catch (err) {
+        console.log("fetchUserErr -->", err)
+      }
     }
-    catch (err) {
-      console.log("fetchUserErr -->", err)
-    }
-  }
-  auth && getUserInfo()
+    auth && getUserInfo()
+  }, [auth])
+
+
   const errorClickHandler = () => {
     Navigate("/auth/login")
   }

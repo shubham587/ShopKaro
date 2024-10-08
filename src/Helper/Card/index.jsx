@@ -7,23 +7,35 @@ import { toast } from 'react-toastify'
 import { store } from '../../store'
 import api from '../../service/api'
 import { setUser, addItem, removeItem } from '../../store/userSlice'
+import { useSelector } from 'react-redux'
 
 const Card = ({ data, fillData }) => {
   // const favCart = store.getState().user["fav-cart"]
-  const [fill, setFill] = useState(fillData)
-  
-  const favHandler = (id) => {
-    console.log("card--->", id)
+  // const [fill, setFill] = useState(fillData)
+  const [fav, setFav] = useState([])
+  const favList = useSelector((state) => state.user["fav-cart"])
+
+  useEffect(() => {
+    setFav(favList?.map((ele) => ele["prod_id"]) || [])
+  }, [favList])
+
+  // console.log("favList", favList)
+  // console.log("fav", fav)
+  // console.log("data", data)
+
+  const favHandler = (id, fill) => {
+    console.log("card--->", id, fill)
+
     if (fill) {
       try {
         const removeItemHandler = async (id) => {
-          console.log("from card:",id)
+          console.log("from card:", id)
           const res = await api.removeFavItem(id)
           console.log(res, "Remove res")
           if (res.status === 200) {
             toast.success("Item removed from favourite")
             store.dispatch(removeItem(id))
-            setFill(!fill)
+            // setFill(!fill)
           }
         }
         removeItemHandler(id)
@@ -34,14 +46,14 @@ const Card = ({ data, fillData }) => {
     } else {
       try {
         const addItemHandler = async (id) => {
-          console.log("from card:",id)
+          console.log("from card:", id)
           const res = await api.addFavItem(id)
-    
+
           if (res.status === 200) {
             console.log(id, "product id")
             store.dispatch(addItem(id))
             toast.success("Item added to favorite")
-            setFill(!fill)
+            // setFill(!fill)
           }
         }
         addItemHandler(id)
@@ -65,8 +77,8 @@ const Card = ({ data, fillData }) => {
         <div className="card-image m-2">
           <img className='h-full transition-transform duration-500 ease-in-out transform hover:scale-110' src={data.Image} alt={data.Name} />
         </div>
-        <div className="fav-btn absolute top-2 right-1" onClick={() => favHandler(data["_id"]["$oid"])} >
-          <FavouriteIcon fill={fill} color={"#FF9800"} />
+        <div className="fav-btn absolute top-2 right-1" onClick={() => favHandler(data["_id"]["$oid"], fav.includes(data["_id"]["$oid"]))} >
+          <FavouriteIcon fill={fav.includes(data["_id"]["$oid"])} color={"#FF9800"} />
         </div>
         <div className="card-desc w-full relative">
           <h3 className='truncate'>{data.Name}</h3>
